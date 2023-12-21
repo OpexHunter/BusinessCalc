@@ -1,0 +1,15 @@
+
+#MainUI
+#Конвертировать UI в .py файл
+pyside6-uic setupUI.ui -o src/setupUI.py
+#Конвертировать файл ресурсов .qrc в .py файл
+pyside6-rcc src/assets/src.qrc -o src/src_rc.py
+
+#Calc Helper UI
+#Конвертировать UI в .py файл
+pyside6-uic setupHelperUI.ui -o src/setupHelperUI.py
+#Конвертировать файл ресурсов .qrc в .py файл
+pyside6-rcc src/assets/src.qrc -o src/src_rc.py
+
+#build
+pyinstaller build.spec

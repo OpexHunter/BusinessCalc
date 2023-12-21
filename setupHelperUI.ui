@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>690</width>
+    <height>307</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Calc Helper</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="src/assets/src.qrc">
+    <normaloff>:/src_ico/question.ico</normaloff>:/src_ico/question.ico</iconset>
+  </property>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>691</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 15px;
+font-weight: bold;
+font-family: &quot;Noto Sans&quot;;
+border: 1px rgb(0,0,0);</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="src/assets/src.qrc"/>
+ </resources>
+ <connections/>
+</ui>

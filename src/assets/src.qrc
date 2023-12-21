@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="src_ico">
+    <file>question.ico</file>
+    <file>app.ico</file>
+    <file>online-shop.ico</file>
+    <file>online-shop-_1_.ico</file>
+  </qresource>
+</RCC>
