@@ -4,7 +4,7 @@ from PySide6.QtGui import QStandardItemModel, QStandardItem
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
     QVBoxLayout, QWidget
 from setupUI import Ui_BuisnessCalc as Ui_MainWindow
-from test import DialogWindow
+from Dialog import DialogWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
