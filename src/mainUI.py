@@ -12,7 +12,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-
         def __setupHelper():
             self.ui.h_TC1.clicked.connect(lambda: self.HelpText('dasd'))
             self.ui.h_TC2.clicked.connect(lambda: self.HelpText('sdsad'))
@@ -38,7 +37,7 @@ class MainWindow(QMainWindow):
             self.ui.h_TR3_2.clicked.connect(lambda: self.HelpText('dasd'))
             self.ui.h_TR3_3.clicked.connect(lambda: self.HelpText('dasd'))
             self.ui.h_TR4_1.clicked.connect(lambda: self.HelpText('dasd'))
-
+        __setupHelper()
     @classmethod
     def HelpText(cls, text):
         cls.helper(text)
