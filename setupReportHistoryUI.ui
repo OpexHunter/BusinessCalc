@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>511</width>
+    <height>498</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>История отчётов</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="src/assets/src.qrc">
+    <normaloff>:/src_ico/online-shop-_1_.ico</normaloff>:/src_ico/online-shop-_1_.ico</iconset>
+  </property>
+  <widget class="QPushButton" name="SeeReport">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>460</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Просмотр отчёта</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="HistoryTable">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>511</width>
+     <height>451</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="src/assets/src.qrc"/>
+ </resources>
+ <connections/>
+</ui>

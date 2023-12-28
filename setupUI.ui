@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1046</width>
-    <height>615</height>
+    <height>596</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
       <x>10</x>
       <y>10</y>
       <width>371</width>
-      <height>591</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -162,7 +162,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -242,7 +242,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -281,8 +281,17 @@ QPushButton:pressed {
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_43">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <item>
         <widget class="QLabel" name="label_43">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Покупка помещения (Если не арендуется)</string>
          </property>
@@ -331,7 +340,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -427,7 +436,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -507,7 +516,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -567,7 +576,7 @@ QPushButton:pressed {
        <x>0</x>
        <y>250</y>
        <width>361</width>
-       <height>321</height>
+       <height>281</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -655,7 +664,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -735,7 +744,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -815,7 +824,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -857,7 +866,7 @@ QPushButton:pressed {
        <item>
         <widget class="QLabel" name="label_150">
          <property name="text">
-          <string>Страхование, Налоги</string>
+          <string>Страхование</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -895,7 +904,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -975,7 +984,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -1079,7 +1088,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -1159,7 +1168,7 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -1239,92 +1248,12 @@ QPushButton:pressed {
           <string/>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="h_TC13">
-         <property name="minimumSize">
-          <size>
-           <width>23</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="src/assets/src.qrc">
-           <normaloff>:/src_ico/question.ico</normaloff>:/src_ico/question.ico</iconset>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_106">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>270</y>
-        <width>331</width>
-        <height>29</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_148">
-       <item>
-        <widget class="QLabel" name="label_155">
-         <property name="text">
-          <string>Поддержание специфики ресторана</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_148">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="i_TC14">
-         <property name="minimumSize">
-          <size>
-           <width>70</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>70</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="h_TC14">
          <property name="minimumSize">
           <size>
            <width>23</width>
@@ -1356,7 +1285,7 @@ QPushButton:pressed {
       <x>400</x>
       <y>10</y>
       <width>631</width>
-      <height>371</height>
+      <height>411</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1450,7 +1379,7 @@ QComboBox {
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>203</width>
+        <width>174</width>
         <height>26</height>
        </rect>
       </property>
@@ -1501,29 +1430,6 @@ QComboBox {
            <string>Дорогой</string>
           </property>
          </item>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="h_TR1_1">
-         <property name="minimumSize">
-          <size>
-           <width>23</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="src/assets/src.qrc">
-           <normaloff>:/src_ico/question.ico</normaloff>:/src_ico/question.ico</iconset>
-         </property>
         </widget>
        </item>
       </layout>
@@ -1636,7 +1542,7 @@ QComboBox {
        <x>0</x>
        <y>290</y>
        <width>501</width>
-       <height>61</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1686,7 +1592,7 @@ QPushButton:pressed {
        <item>
         <widget class="QLabel" name="label_114">
          <property name="text">
-          <string>Адрес / город</string>
+          <string>Адрес </string>
          </property>
         </widget>
        </item>
@@ -1707,7 +1613,7 @@ QPushButton:pressed {
         <widget class="QLineEdit" name="i_TR4_1">
          <property name="minimumSize">
           <size>
-           <width>350</width>
+           <width>410</width>
            <height>0</height>
           </size>
          </property>
@@ -1718,30 +1624,7 @@ QPushButton:pressed {
           </size>
          </property>
          <property name="placeholderText">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="h_TR4_1">
-         <property name="minimumSize">
-          <size>
-           <width>23</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="src/assets/src.qrc">
-           <normaloff>:/src_ico/question.ico</normaloff>:/src_ico/question.ico</iconset>
+          <string>город, улица, дом</string>
          </property>
         </widget>
        </item>
@@ -1770,6 +1653,57 @@ QPushButton:pressed {
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_78">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>481</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_113">
+       <item>
+        <widget class="QLabel" name="label_121">
+         <property name="text">
+          <string>Название</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_113">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="i_TR4_2">
+         <property name="minimumSize">
+          <size>
+           <width>410</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="placeholderText">
+          <string>название ресторана</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QFrame" name="TR3">
@@ -1884,7 +1818,7 @@ QPushButton:pressed {
           </size>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -2186,7 +2120,7 @@ QComboBox {
           </size>
          </property>
          <property name="placeholderText">
-          <string>0</string>
+          <string>руб.</string>
          </property>
         </widget>
        </item>
@@ -2288,7 +2222,7 @@ QPushButton:pressed {
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>278</width>
+        <width>271</width>
         <height>26</height>
        </rect>
       </property>
@@ -2362,7 +2296,7 @@ QPushButton:pressed {
        <rect>
         <x>10</x>
         <y>60</y>
-        <width>293</width>
+        <width>271</width>
         <height>28</height>
        </rect>
       </property>
@@ -2370,7 +2304,7 @@ QPushButton:pressed {
        <item>
         <widget class="QLabel" name="label_115">
          <property name="text">
-          <string>Трафик достопремичательности</string>
+          <string>Трафик мест скопления</string>
          </property>
         </widget>
        </item>
@@ -2507,11 +2441,11 @@ QPushButton:pressed {
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="b_start">
+   <widget class="QPushButton" name="rep_create">
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>390</y>
+      <y>430</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -2520,11 +2454,11 @@ QPushButton:pressed {
      <string>Создать отчёт</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="b_history">
+   <widget class="QPushButton" name="rep_history">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>390</y>
+      <y>430</y>
       <width>181</width>
       <height>61</height>
      </rect>
@@ -2533,11 +2467,11 @@ QPushButton:pressed {
      <string>История отчётов</string>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
+   <widget class="QProgressBar" name="rep_progress">
     <property name="geometry">
      <rect>
       <x>790</x>
-      <y>420</y>
+      <y>460</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -2550,7 +2484,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>790</x>
-      <y>400</y>
+      <y>440</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -2563,7 +2497,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>580</y>
+      <y>560</y>
       <width>641</width>
       <height>26</height>
      </rect>
@@ -2577,14 +2511,14 @@ QPushButton:pressed {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="login">
        <property name="text">
         <string>Сменить пользователя</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="admin">
        <property name="text">
         <string>Администрирование</string>
        </property>
