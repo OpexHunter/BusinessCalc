@@ -1,4 +1,5 @@
 import cx_Oracle
+import datetime
 
 def calc_and_load(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
                   SALARY, INSURANCE,MAINTENANCE, KU, LOGISTICS, ADVERTISING_VC, RES_TYPE, COMPETITORS,
@@ -19,23 +20,14 @@ def calc_and_load(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZIN
     #расчёт ожидаемой прибыли
     PROFIT=TR-VC;
 
-    #вывод в виде текста основных результатов
-    print('ОСНОВНЫЕ РЕЗУЛЬТАТЫ РАСЧЁТА:')
-    print('Время окупаемости бизнеса', TIMEE, 'месяцев');
-    print('Ожидаемые единоразовые расходы', FC, 'тыс.рублей');
-    print('Ожидаемые ежимесячные расходы', FC, 'тыс.рублей');
-    print('Ожидаемый доход ресторана', TR, 'тыс.рублей в месяц');
-    print('Ожидаемый доход ресторана', TR, 'тыс.рублей в месяц');
-    print('Ожидаемая ежемесечная прибыль', PROFIT, 'тыс.рублей в месяц');
+    REPORT_DATE = datetime.datetime.now()
 
     #data это переменная типа list, необходимая для выполнения строчки "cursor.executemany(sql,data)"
-    data=[(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
+    data=[(REPORT_DATE, RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
                   SALARY, INSURANCE, MAINTENANCE, KU, LOGISTICS, ADVERTISING_VC, RES_TYPE, COMPETITORS,
-                  AVG_CHECK,RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME, VC, FC, TR, PROFIT, TIMEE)];
+                  AVG_CHECK,RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME, VC, FC, TR, PROFIT, TIMEE)]
     #так как len(data)=1 перепишем её в другом виде в переменную str_dat, где len(data)=29, т. е. количество наших атрибутов
-    str_dat=[RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
-                  SALARY, INSURANCE, MAINTENANCE, KU, LOGISTICS, ADVERTISING_VC, RES_TYPE, COMPETITORS,
-                  AVG_CHECK,RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME, VC, FC, TR, PROFIT, TIMEE];
+    str_dat=data[0]
 
     #в нашем случае необходимо добавить к запросу строчку где будет написано такое (:1, :2 ... :29)
     #в ручную 29 раз писать лень, плюс количество атрибутов может измениться, поэтому немного автоматизировал это дело

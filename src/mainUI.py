@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QHeaderVie
 from setupUI import Ui_BuisnessCalc as Ui_MainWindow
 from Dialog import *
 from __calc_and_load import calc_and_load
-
+from __get_data import get_data
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         def __buttons_connect():
             # Главные кнопки
             self.ui.rep_history.clicked.connect(lambda: self.__history_dialog())
-            self.ui.rep_create.clicked.connect(lambda: self.__report_create(self))
+            self.ui.rep_create.clicked.connect(lambda: self.__report_create())
 
             # Хелперы
             self.ui.h_TC1.clicked.connect(lambda: self.__helper_dialog('Стоимость помещения, которое будет куплено под заведение (руб)'))
@@ -51,14 +51,14 @@ class MainWindow(QMainWindow):
     def __history_dialog(cls):
         def __model(data):
             model = QStandardItemModel()
-            model.setHorizontalHeaderLabels(['Id', 'Address'])
-            for title, link in data:
-                model.appendRow([QStandardItem(title), QStandardItem(link)])
+            model.setHorizontalHeaderLabels(['Дата', 'Адресс', 'Имя', 'Тип ресторана'])
+            for date, address, name, type in data:
+                model.appendRow([QStandardItem(str(date)), QStandardItem(address), QStandardItem(name), QStandardItem(type)])
             if len(data) == 0:
                 model.appendRow([QStandardItem('Cтатья не найдена'), QStandardItem('')])
-            cls.history.ui.HistoryTable.setModel(model)
+            MainWindow.history.ui.HistoryTable.setModel(model)
 
-        __model([['1', 'г.Москва ул.Баградионовская д.4 к.2'], ['2', 'г.Москва ул.Первомайская д.33']])
+        __model(get_data())
         cls.history.show()
     @classmethod
     def report_dialog(cls):
@@ -85,12 +85,12 @@ class MainWindow(QMainWindow):
                       float(self.ui.i_TC11.text()),
                       float(self.ui.i_TC12.text()),
                       float(self.ui.i_TC13.text()),
-                      self.ui.i_TR1_1.text(),
-                      self.ui.i_TR1_2.text(),
+                      self.ui.i_TR1_1.currentText(),
+                      float(self.ui.i_TR1_2.text()),
                       AVG_CHECK,
-                      self.ui.i_TR3_1.text(),
-                      self.ui.i_TR3_2.text(),
-                      self.ui.i_TR3_3.text(),
+                      float(self.ui.i_TR3_1.text()),
+                      float(self.ui.i_TR3_2.text()),
+                      float(self.ui.i_TR3_3.text()),
                       self.ui.i_TR4_1.text(),
                       self.ui.i_TR4_2.text()
                       )
