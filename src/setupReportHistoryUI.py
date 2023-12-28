@@ -23,16 +23,16 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(511, 498)
+        Dialog.resize(881, 498)
         icon = QIcon()
         icon.addFile(u":/src_ico/online-shop-_1_.ico", QSize(), QIcon.Normal, QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.SeeReport = QPushButton(Dialog)
         self.SeeReport.setObjectName(u"SeeReport")
-        self.SeeReport.setGeometry(QRect(380, 460, 121, 31))
+        self.SeeReport.setGeometry(QRect(750, 460, 121, 31))
         self.HistoryTable = QTableView(Dialog)
         self.HistoryTable.setObjectName(u"HistoryTable")
-        self.HistoryTable.setGeometry(QRect(0, 0, 511, 451))
+        self.HistoryTable.setGeometry(QRect(0, 0, 881, 451))
 
         self.retranslateUi(Dialog)
 

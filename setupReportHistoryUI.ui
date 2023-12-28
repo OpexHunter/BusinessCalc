@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
+    <width>881</width>
     <height>498</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
   <widget class="QPushButton" name="SeeReport">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>750</x>
      <y>460</y>
      <width>121</width>
      <height>31</height>
@@ -35,7 +35,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>511</width>
+     <width>881</width>
      <height>451</height>
     </rect>
    </property>
