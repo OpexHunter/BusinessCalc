@@ -59,12 +59,12 @@ class DialogReport(QDialog):
         self.ui.rep3.setText(f'Выручка ресторана (TR): {round(data[5])} р.')
         self.ui.rep4.setText(f'Прибыль (PROFIT): {round(data[6])} р.')
         self.ui.rep5.setText(f'Время окупаемости: {int(data[7])} месяцев')
-        if data[7] / data[5] > 1.1:
-            self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
-                                    f'Рентабельность: {(round(data[7] / data[5], 2) - 1) * 100}%')
-        elif data[7] / data[5] > 1.2:
+        if data[6] / data[4] > 0.2:
             self.ui.rep_dop.setText(f'Условия старта хорошие, бизнесс можно открывать.\n'
-                                    f'Рентабельность: {(round(data[7] / data[5], 2) - 1) * 100}%')
+                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
+        elif data[6] / data[4] > 0.1:
+            self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
+                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
         else:
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
-                                    f'Рентабельность: {(round(data[7] / data[5], 2) - 1) * 100}%')
+                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
