@@ -5,8 +5,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QHeaderVie
     QVBoxLayout, QWidget
 from setupUI import Ui_BuisnessCalc as Ui_MainWindow
 from Dialog import *
-from __calc_and_load import calc_and_load
-from __get_data import get_history_data
+import Oracle_SQL
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -46,31 +45,13 @@ class MainWindow(QMainWindow):
     def __helper_dialog(cls, text):
         cls.helper(text)
         cls.helper.show()
-
     @classmethod
     def __history_dialog(cls):
-        def __model(data):
-            model = QStandardItemModel()
-            model.setHorizontalHeaderLabels(['id', 'Дата', 'Адресс', 'Имя', 'Тип ресторана'])
-            for id, date, address, name, type in data:
-                model.appendRow([QStandardItem(str(id)), QStandardItem(str(date)), QStandardItem(address), QStandardItem(name), QStandardItem(type)])
-            if len(data) == 0:
-                model.appendRow([QStandardItem('Cтатья не найдена'), QStandardItem('')])
-            cls.history.ui.HistoryTable.setModel(model)
-            cls.history.ui.HistoryTable.setColumnWidth(0, 50)
-            cls.history.ui.HistoryTable.setColumnWidth(1, 130)
-            cls.history.ui.HistoryTable.setColumnWidth(2, 350)
-            cls.history.ui.HistoryTable.setColumnWidth(3, 244)
-            cls.history.ui.HistoryTable.setColumnWidth(4, 90)
-            cls.history.ui.HistoryTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
-            cls.history.ui.HistoryTable.horizontalHeader().setSectionResizeMode(2, QHeaderView.Fixed)
-            cls.history.ui.HistoryTable.horizontalHeader().setSectionResizeMode(3, QHeaderView.Fixed)
-            cls.history.ui.HistoryTable.setEditTriggers(QTableView.NoEditTriggers)
-
-        __model(get_history_data())
+        cls.history(Oracle_SQL.get_history_data())
         cls.history.show()
     @classmethod
     def report_dialog(cls):
+        cls.report(Oracle_SQL.get_report_data(cls.history.get_selected_CASE_ID()))
         cls.report.show()
     def __report_create(self):
         if self.ui.i_TR2_1.text() != '':
@@ -81,7 +62,7 @@ class MainWindow(QMainWindow):
             AVG_CHECK = float(self.ui.i_TR2_3.text())
         else:
             AVG_CHECK = 0
-        calc_and_load(float(self.ui.i_TC1.text()),
+        Oracle_SQL.calc_and_load_report(float(self.ui.i_TC1.text()),
                       float(self.ui.i_TC2.text()),
                       float(self.ui.i_TC3.text()),
                       float(self.ui.i_TC4.text()),

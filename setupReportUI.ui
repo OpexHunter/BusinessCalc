@@ -20,10 +20,10 @@
   <widget class="QFrame" name="res">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>431</width>
-     <height>391</height>
+     <x>13</x>
+     <y>40</y>
+     <width>721</width>
+     <height>361</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -38,7 +38,7 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="l_main">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -118,41 +118,41 @@ QPushButton:pressed {
       <item>
        <widget class="QLabel" name="rep1">
         <property name="text">
-         <string>Время окупаемости:</string>
+         <string>Стартовые расходы (TC):</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="rep2">
         <property name="text">
-         <string>Стартовые расходы:</string>
+         <string>Ежемесячные расходы (VC):</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="rep3">
         <property name="text">
-         <string>Ежемесячные расходы:</string>
+         <string>Выручка ресторана (TR):</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="rep4">
         <property name="text">
-         <string>Доход ресторана:</string>
+         <string>Прибыль (PROFIT):</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="rep5">
         <property name="text">
-         <string>Ежемесечная прибыль:</string>
+         <string>Время окупаемости:</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="l_main_osn">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -178,7 +178,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>210</y>
+      <y>190</y>
       <width>401</width>
       <height>151</height>
      </rect>
@@ -217,7 +217,7 @@ QPushButton:pressed {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="l_main_dop">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -238,7 +238,7 @@ QPushButton:pressed {
       <string>Дополнение</string>
      </property>
     </widget>
-    <widget class="QTextBrowser" name="textBrowser">
+    <widget class="QTextBrowser" name="rep_dop">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -265,24 +265,53 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>40</y>
+      <width>301</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QGraphicsView" name="graphic1"/>
+     </item>
+     <item>
+      <widget class="QGraphicsView" name="graphic2"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QLabel" name="ReportData">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>10</y>
-     <width>258</width>
-     <height>392</height>
+     <x>-10</x>
+     <y>0</y>
+     <width>761</width>
+     <height>31</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QGraphicsView" name="graphicsView"/>
-    </item>
-    <item>
-     <widget class="QGraphicsView" name="graphicsView_2"/>
-    </item>
-   </layout>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-size: 13px;
+	background-color: rgb(255, 255, 255);
+    font-weight: bold;
+	margin-left: 3px;
+    font-family: &quot;Noto Sans&quot;;
+	background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 0px;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string>CASE_ID = 10 | ADDRESS = 'г.Москва ул.Студенческая д.33' | NAME = 'Ресторан &quot;Виктория&quot;'</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
  </widget>
  <resources>
