@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-src/*.dll
+src/oracle/*.dll
 .Python
 build/
 develop-eggs/

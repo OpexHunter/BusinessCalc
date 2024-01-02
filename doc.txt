@@ -6,6 +6,8 @@ pyside6-uic setupHelperUI.ui -o src/setupHelperUI.py
 pyside6-uic setupReportUI.ui -o src/setupReportUI.py
 #reporter history
 pyside6-uic setupReportHistoryUI.ui -o src/setupReportHistoryUI.py
+#user panel
+pyside6-uic setupUserPanelUI.ui -o src/setupUserPanelUI.py
 
 #Конвертировать файл ресурсов .qrc в .py файл
 pyside6-rcc src/assets/src.qrc -o src/src_rc.py

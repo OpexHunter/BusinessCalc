@@ -1,11 +1,7 @@
-import sys
-import webbrowser
-from PySide6.QtGui import QStandardItemModel, QStandardItem
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
-    QVBoxLayout, QWidget
-from setupUI import Ui_BuisnessCalc as Ui_MainWindow
-from Dialog import *
-import Oracle_SQL
+from src.GUI.setupUI import Ui_BuisnessCalc as Ui_MainWindow
+from src.GUI.Dialog import *
+from src.oracle import Oracle_SQL
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -17,6 +13,7 @@ class MainWindow(QMainWindow):
             # Главные кнопки
             self.ui.rep_history.clicked.connect(lambda: self.__history_dialog())
             self.ui.rep_create.clicked.connect(lambda: self.__report_create())
+            self.ui.admin.clicked.connect(lambda: self.__user_panel())
 
             # Хелперы
             self.ui.h_TC1.clicked.connect(lambda: self.__helper_dialog('Стоимость помещения, которое будет куплено под заведение (руб)'))
@@ -53,6 +50,10 @@ class MainWindow(QMainWindow):
     def report_dialog(cls):
         cls.report(Oracle_SQL.get_report_data(cls.history.get_selected_CASE_ID()))
         cls.report.show()
+    @classmethod
+    def __user_panel(cls):
+        cls.user_panel(Oracle_SQL.get_user_data())
+        cls.user_panel.show()
     def __report_create(self):
         if self.ui.i_TR2_1.text() != '':
             AVG_CHECK = float(self.ui.i_TR2_1.text())
@@ -63,27 +64,27 @@ class MainWindow(QMainWindow):
         else:
             AVG_CHECK = 0
         Oracle_SQL.calc_and_load_report(float(self.ui.i_TC1.text()),
-                      float(self.ui.i_TC2.text()),
-                      float(self.ui.i_TC3.text()),
-                      float(self.ui.i_TC4.text()),
-                      float(self.ui.i_TC5.text()),
-                      float(self.ui.i_TC6.text()),
-                      float(self.ui.i_TC7.text()),
-                      float(self.ui.i_TC8.text()),
-                      float(self.ui.i_TC9.text()),
-                      float(self.ui.i_TC10.text()),
-                      float(self.ui.i_TC11.text()),
-                      float(self.ui.i_TC12.text()),
-                      float(self.ui.i_TC13.text()),
-                      self.ui.i_TR1_1.currentText(),
-                      float(self.ui.i_TR1_2.text()),
-                      AVG_CHECK,
-                      float(self.ui.i_TR3_1.text()),
-                      float(self.ui.i_TR3_2.text()),
-                      float(self.ui.i_TR3_3.text()),
-                      self.ui.i_TR4_1.text(),
-                      self.ui.i_TR4_2.text()
-                      )
+                                        float(self.ui.i_TC2.text()),
+                                        float(self.ui.i_TC3.text()),
+                                        float(self.ui.i_TC4.text()),
+                                        float(self.ui.i_TC5.text()),
+                                        float(self.ui.i_TC6.text()),
+                                        float(self.ui.i_TC7.text()),
+                                        float(self.ui.i_TC8.text()),
+                                        float(self.ui.i_TC9.text()),
+                                        float(self.ui.i_TC10.text()),
+                                        float(self.ui.i_TC11.text()),
+                                        float(self.ui.i_TC12.text()),
+                                        float(self.ui.i_TC13.text()),
+                                        self.ui.i_TR1_1.currentText(),
+                                        float(self.ui.i_TR1_2.text()),
+                                        AVG_CHECK,
+                                        float(self.ui.i_TR3_1.text()),
+                                        float(self.ui.i_TR3_2.text()),
+                                        float(self.ui.i_TR3_3.text()),
+                                        self.ui.i_TR4_1.text(),
+                                        self.ui.i_TR4_2.text()
+                                        )
 
 
 if __name__ == "__main__":
@@ -91,6 +92,7 @@ if __name__ == "__main__":
     MainWindow.helper = DialogHelper()
     MainWindow.report = DialogReport()
     MainWindow.history = DialogHistory(lambda: MainWindow.report_dialog())
+    MainWindow.user_panel = DialogUsers()
 
     window = MainWindow()
     window.show()

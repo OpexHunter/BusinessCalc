@@ -1,5 +1,6 @@
 import cx_Oracle
 import datetime
+cx_Oracle.init_oracle_client(lib_dir="oracle")
 
 def get_history_data():
     dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
@@ -72,3 +73,20 @@ def get_report_data(CASE_ID):
 
     for row in result:
         return [*list(row)]
+
+def get_user_data():
+    dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
+    connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
+                                   dsn=dsn)
+    cursor = connection.cursor()
+
+    sql = """SELECT LOGIN, PASSWORD, LVL_ACCESS
+             FROM LOG_PASS
+             ORDER BY 1 DESC
+             """
+    result=cursor.execute(sql)
+
+    result_return = []
+    for row in result:
+        result_return.append([*list(row)])
+    return result_return

@@ -2,9 +2,11 @@ from PySide6.QtGui import QStandardItemModel, QStandardItem
 from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
     QVBoxLayout, QWidget
 import sys
-from setupHelperUI import Ui_Dialog as Ui_DialogHelper
-from setupReportHistoryUI import Ui_Dialog as Ui_DialogHistory
-from setupReportUI import  Ui_Dialog as Ui_DialogReport
+from .setupHelperUI import Ui_Dialog as Ui_DialogHelper
+from .setupReportHistoryUI import Ui_Dialog as Ui_DialogHistory
+from .setupReportUI import  Ui_Dialog as Ui_DialogReport
+from .setupUserPanelUI import  Ui_Dialog as Ui_DialogUsers
+
 class DialogHelper(QDialog):
     def __init__(self):
         super().__init__()
@@ -68,3 +70,21 @@ class DialogReport(QDialog):
         else:
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
                                     f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
+
+class DialogUsers(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_DialogUsers()
+        self.ui.setupUi(self)
+        self.setFixedSize(self.width(), self.height())
+    def __call__(self, data):
+        model = QStandardItemModel()
+        model.setHorizontalHeaderLabels(['Пользователь', 'Уровень доступа'])
+        for log, _, lvl_access in data:
+            model.appendRow([QStandardItem(log), QStandardItem(lvl_access)])
+        self.ui.UserTable.setModel(model)
+        self.ui.UserTable.setColumnWidth(0, 200)
+        self.ui.UserTable.setColumnWidth(1, 250)
+        self.ui.UserTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
+        self.ui.UserTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Fixed)
+        self.ui.UserTable.setEditTriggers(QTableView.NoEditTriggers)
