@@ -17,14 +17,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QLabel, QLineEdit, QMainWindow, QProgressBar,
-    QPushButton, QSizePolicy, QSpacerItem, QWidget)
-#import src_rc
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
+from . import src_rc
 
 class Ui_BuisnessCalc(object):
     def setupUi(self, BuisnessCalc):
         if not BuisnessCalc.objectName():
             BuisnessCalc.setObjectName(u"BuisnessCalc")
-        BuisnessCalc.resize(1046, 596)
+        BuisnessCalc.resize(1042, 580)
         icon = QIcon()
         icon.addFile(u":/src_ico/online-shop-_1_.ico", QSize(), QIcon.Normal, QIcon.Off)
         BuisnessCalc.setWindowIcon(icon)
@@ -35,7 +36,7 @@ class Ui_BuisnessCalc(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.TC = QFrame(self.centralwidget)
         self.TC.setObjectName(u"TC")
-        self.TC.setGeometry(QRect(10, 10, 371, 571))
+        self.TC.setGeometry(QRect(10, 10, 371, 561))
         self.TC.setStyleSheet(u"QFrame#TC {\n"
 "	background-color: rgba(0, 0, 0, 0.03);\n"
 "   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;\n"
@@ -1130,40 +1131,111 @@ class Ui_BuisnessCalc(object):
 
         self.horizontalLayout_112.addWidget(self.h_TR3_2)
 
-        self.rep_create = QPushButton(self.centralwidget)
+        self.main_frame = QFrame(self.centralwidget)
+        self.main_frame.setObjectName(u"main_frame")
+        self.main_frame.setGeometry(QRect(400, 470, 631, 101))
+        self.main_frame.setStyleSheet(u"QFrame#main_frame {\n"
+"   background-color: rgba(255, 128, 0, 0.05);\n"
+"   border: 1px solid rgba(0, 0, 0, 0.4); border-radius: 5px;\n"
+"}")
+        self.main_frame.setFrameShape(QFrame.StyledPanel)
+        self.main_frame.setFrameShadow(QFrame.Raised)
+        self.progress_2 = QProgressBar(self.main_frame)
+        self.progress_2.setObjectName(u"progress_2")
+        self.progress_2.setGeometry(QRect(210, 70, 191, 16))
+        self.progress_2.setMaximum(100)
+        self.progress_2.setValue(0)
+        self.progress_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.progress_2.setTextVisible(False)
+        self.progress_2.setOrientation(Qt.Horizontal)
+        self.progress_2.setInvertedAppearance(False)
+        self.rep_create = QPushButton(self.main_frame)
         self.rep_create.setObjectName(u"rep_create")
-        self.rep_create.setGeometry(QRect(400, 430, 191, 61))
-        self.rep_history = QPushButton(self.centralwidget)
-        self.rep_history.setObjectName(u"rep_history")
-        self.rep_history.setGeometry(QRect(600, 430, 181, 61))
-        self.rep_progress = QProgressBar(self.centralwidget)
-        self.rep_progress.setObjectName(u"rep_progress")
-        self.rep_progress.setGeometry(QRect(790, 460, 161, 21))
-        self.rep_progress.setValue(0)
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(790, 440, 71, 16))
-        self.layoutWidget = QWidget(self.centralwidget)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(400, 560, 641, 26))
-        self.horizontalLayout = QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.label_2 = QLabel(self.layoutWidget)
-        self.label_2.setObjectName(u"label_2")
+        self.rep_create.setGeometry(QRect(10, 10, 191, 61))
+        self.rep_create.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,225);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
+        self.progress_1 = QProgressBar(self.main_frame)
+        self.progress_1.setObjectName(u"progress_1")
+        self.progress_1.setGeometry(QRect(10, 70, 191, 16))
+        self.progress_1.setValue(0)
+        self.progress_1.setTextVisible(False)
+        self.widget = QWidget(self.main_frame)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(490, 10, 131, 71))
+        self.verticalLayout = QVBoxLayout(self.widget)
+        self.verticalLayout.setSpacing(3)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.profile = QPushButton(self.widget)
+        self.profile.setObjectName(u"profile")
+        self.profile.setMinimumSize(QSize(0, 30))
+        self.profile.setMaximumSize(QSize(16777215, 16777215))
+        self.profile.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,225);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
 
-        self.horizontalLayout.addWidget(self.label_2)
+        self.verticalLayout.addWidget(self.profile)
 
-        self.login = QPushButton(self.layoutWidget)
-        self.login.setObjectName(u"login")
-
-        self.horizontalLayout.addWidget(self.login)
-
-        self.admin = QPushButton(self.layoutWidget)
+        self.admin = QPushButton(self.widget)
         self.admin.setObjectName(u"admin")
+        self.admin.setMinimumSize(QSize(0, 30))
+        self.admin.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,225);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
 
-        self.horizontalLayout.addWidget(self.admin)
+        self.verticalLayout.addWidget(self.admin)
 
+        self.rep_history = QPushButton(self.main_frame)
+        self.rep_history.setObjectName(u"rep_history")
+        self.rep_history.setGeometry(QRect(210, 10, 191, 61))
+        self.rep_history.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,225);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
         BuisnessCalc.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(BuisnessCalc)
@@ -1207,7 +1279,7 @@ class Ui_BuisnessCalc(object):
         self.i_TC6.setText("")
         self.i_TC6.setPlaceholderText(QCoreApplication.translate("BuisnessCalc", u"\u0440\u0443\u0431.", None))
         self.h_TC6.setText("")
-        self.label_150.setText(QCoreApplication.translate("BuisnessCalc", u"\u0421\u0442\u0440\u0430\u0445\u043e\u0432\u0430\u043d\u0438\u0435, \u041d\u0430\u043b\u043e\u0433\u0438", None))
+        self.label_150.setText(QCoreApplication.translate("BuisnessCalc", u"\u0421\u0442\u0440\u0430\u0445\u043e\u0432\u0430\u043d\u0438\u0435", None))
         self.i_TC9.setText("")
         self.i_TC9.setPlaceholderText(QCoreApplication.translate("BuisnessCalc", u"\u0440\u0443\u0431.", None))
         self.h_TC9.setText("")
@@ -1268,10 +1340,8 @@ class Ui_BuisnessCalc(object):
         self.i_TR3_2.setPlaceholderText(QCoreApplication.translate("BuisnessCalc", u"0", None))
         self.h_TR3_2.setText("")
         self.rep_create.setText(QCoreApplication.translate("BuisnessCalc", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u043e\u0442\u0447\u0451\u0442", None))
-        self.rep_history.setText(QCoreApplication.translate("BuisnessCalc", u"\u0418\u0441\u0442\u043e\u0440\u0438\u044f \u043e\u0442\u0447\u0451\u0442\u043e\u0432", None))
-        self.label.setText(QCoreApplication.translate("BuisnessCalc", u"\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043e", None))
-        self.label_2.setText(QCoreApplication.translate("BuisnessCalc", u"\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044f \u0443\u0441\u043f\u0435\u0448\u043d\u0430, \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u0430 - \u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440", None))
-        self.login.setText(QCoreApplication.translate("BuisnessCalc", u"\u0421\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
+        self.profile.setText(QCoreApplication.translate("BuisnessCalc", u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c", None))
         self.admin.setText(QCoreApplication.translate("BuisnessCalc", u"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        self.rep_history.setText(QCoreApplication.translate("BuisnessCalc", u"\u0418\u0441\u0442\u043e\u0440\u0438\u044f \u043e\u0442\u0447\u0451\u0442\u043e\u0432", None))
     # retranslateUi
 

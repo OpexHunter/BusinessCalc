@@ -1,7 +1,7 @@
 from src.GUI.setupUI import Ui_BuisnessCalc as Ui_MainWindow
 from src.GUI.Dialog import *
 from src.oracle import Oracle_SQL
-
+import pickle
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
             self.ui.rep_history.clicked.connect(lambda: self.__history_dialog())
             self.ui.rep_create.clicked.connect(lambda: self.__report_create())
             self.ui.admin.clicked.connect(lambda: self.__user_panel())
+            self.ui.profile.clicked.connect(lambda: self.__profile_dialog())
 
             # Хелперы
             self.ui.h_TC1.clicked.connect(lambda: self.__helper_dialog('Стоимость помещения, которое будет куплено под заведение (руб)'))
@@ -54,6 +55,14 @@ class MainWindow(QMainWindow):
     def __user_panel(cls):
         cls.user_panel(Oracle_SQL.get_user_data())
         cls.user_panel.show()
+    @classmethod
+    def user_edit(cls):
+        cls.user_editUI(1)
+        cls.user_editUI.show()
+    @classmethod
+    def __profile_dialog(cls):
+        cls.profile(*cls.get_access_lvl()[1:])
+        cls.profile.show()
     def __report_create(self):
         if self.ui.i_TR2_1.text() != '':
             AVG_CHECK = float(self.ui.i_TR2_1.text())
@@ -63,36 +72,53 @@ class MainWindow(QMainWindow):
             AVG_CHECK = float(self.ui.i_TR2_3.text())
         else:
             AVG_CHECK = 0
-        Oracle_SQL.calc_and_load_report(float(self.ui.i_TC1.text()),
-                                        float(self.ui.i_TC2.text()),
-                                        float(self.ui.i_TC3.text()),
-                                        float(self.ui.i_TC4.text()),
-                                        float(self.ui.i_TC5.text()),
-                                        float(self.ui.i_TC6.text()),
-                                        float(self.ui.i_TC7.text()),
-                                        float(self.ui.i_TC8.text()),
-                                        float(self.ui.i_TC9.text()),
-                                        float(self.ui.i_TC10.text()),
-                                        float(self.ui.i_TC11.text()),
-                                        float(self.ui.i_TC12.text()),
-                                        float(self.ui.i_TC13.text()),
-                                        self.ui.i_TR1_1.currentText(),
-                                        float(self.ui.i_TR1_2.text()),
-                                        AVG_CHECK,
-                                        float(self.ui.i_TR3_1.text()),
-                                        float(self.ui.i_TR3_2.text()),
-                                        float(self.ui.i_TR3_3.text()),
-                                        self.ui.i_TR4_1.text(),
-                                        self.ui.i_TR4_2.text()
-                                        )
-
+        Oracle_SQL.add_report(float(self.ui.i_TC1.text()),
+                              float(self.ui.i_TC2.text()),
+                              float(self.ui.i_TC3.text()),
+                              float(self.ui.i_TC4.text()),
+                              float(self.ui.i_TC5.text()),
+                              float(self.ui.i_TC6.text()),
+                              float(self.ui.i_TC7.text()),
+                              float(self.ui.i_TC8.text()),
+                              float(self.ui.i_TC9.text()),
+                              float(self.ui.i_TC10.text()),
+                              float(self.ui.i_TC11.text()),
+                              float(self.ui.i_TC12.text()),
+                              float(self.ui.i_TC13.text()),
+                              self.ui.i_TR1_1.currentText(),
+                              float(self.ui.i_TR1_2.text()),
+                              AVG_CHECK,
+                              float(self.ui.i_TR3_1.text()),
+                              float(self.ui.i_TR3_2.text()),
+                              float(self.ui.i_TR3_3.text()),
+                              self.ui.i_TR4_1.text(),
+                              self.ui.i_TR4_2.text()
+                              )
+    @classmethod
+    def get_access_lvl(cls):
+        with open('user_data.pkl', 'rb') as file:
+            user_data = pickle.load(file)
+            access = Oracle_SQL.get_user_data(*user_data)
+            if access:
+                return access[0]
+            else:
+                return '', 'не авторизован', 0, 0, 0
+    @classmethod
+    def profile_log(cls):
+        with open('user_data.pkl', 'wb') as file:
+            user_data = [*cls.profile.get_log_data()]
+            pickle.dump(user_data, file)
+        cls.profile(*cls.get_access_lvl()[1:])
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     MainWindow.helper = DialogHelper()
     MainWindow.report = DialogReport()
     MainWindow.history = DialogHistory(lambda: MainWindow.report_dialog())
-    MainWindow.user_panel = DialogUsers()
+    MainWindow.user_editUI = DialogUserEdit()
+    MainWindow.user_panel = DialogUsers(lambda: MainWindow.user_edit())
+    MainWindow.profile = DialogProfile(lambda: Oracle_SQL.add_user(MainWindow.profile.ui.r_fio.text(), MainWindow.profile.ui.r_email.text(), MainWindow.profile.ui.r_log.text(), MainWindow.profile.ui.r_pass.text()),
+                                       lambda: MainWindow.profile_log())
 
     window = MainWindow()
     window.show()

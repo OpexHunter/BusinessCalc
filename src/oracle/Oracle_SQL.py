@@ -19,9 +19,9 @@ def get_history_data():
         result_return.append([*list(row)])
     return result_return
 
-def calc_and_load_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
-                  SALARY, INSURANCE,MAINTENANCE, KU, LOGISTICS, ADVERTISING_VC, RES_TYPE, COMPETITORS,
-                  AVG_CHECK,RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME):
+def add_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
+               SALARY, INSURANCE, MAINTENANCE, KU, LOGISTICS, ADVERTISING_VC, RES_TYPE, COMPETITORS,
+               AVG_CHECK, RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME):
 
     #Расчёты
     FC = RENT_COST + REPAIR_COST + EQUIP_COST + ADVERTISING_FC + SUBSIDIZING
@@ -59,6 +59,28 @@ def calc_and_load_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUB
     cursor.executemany(sql,data)
     connection.commit()
 
+def add_user(FIO , EMAIL, LOGIN, PASSWORD, CAN_SEE = 0, CAN_REPORT = 0, ADMIN = 0):
+    data=[(FIO, EMAIL, LOGIN, PASSWORD, CAN_SEE, CAN_REPORT, ADMIN)]
+
+    str_dat=data[0]
+    b=len(str_dat) #Авто-заполнение sql запроса
+    d='('
+    for i in range(b):
+        d=d+':'+str(i+1)+','
+        if i+1==b:
+            d=d[:-1]
+            d=d+')'
+
+    dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
+    connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
+                                   dsn=dsn)
+    cursor = connection.cursor()
+
+    sql = """INSERT
+             INTO USERS VALUES"""+d # d='(:1, :2, ..., :29)'
+
+    cursor.executemany(sql,data)
+    connection.commit()
 def get_report_data(CASE_ID):
     dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
     connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
@@ -74,19 +96,20 @@ def get_report_data(CASE_ID):
     for row in result:
         return [*list(row)]
 
-def get_user_data():
+def get_user_data(USER = '', PASSWORD = ''):
     dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
     connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
                                    dsn=dsn)
     cursor = connection.cursor()
-
-    sql = """SELECT LOGIN, PASSWORD, LVL_ACCESS
-             FROM LOG_PASS
-             ORDER BY 1 DESC
-             """
+    bl = True if USER + PASSWORD != "" else False
+    USER = "'" + USER + "'"
+    PASSWORD = "'" + PASSWORD + "'"
+    sql = (f'SELECT FIO, LOGIN, CAN_SEE, CAN_REPORT, ADMIN FROM USERS '
+           f'{"WHERE LOGIN = " + USER if bl else ""}{" AND PASSWORD = " + PASSWORD if bl else ""} ORDER BY 1 DESC')
     result=cursor.execute(sql)
 
     result_return = []
     for row in result:
         result_return.append([*list(row)])
     return result_return
+

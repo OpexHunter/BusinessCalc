@@ -1,16 +1,20 @@
 #MainUI
-pyside6-uic setupUI.ui -o src/setupUI.py
+pyside6-uic setupUI.ui -o src/GUI/setupUI.py
 #Calc Helper UI
-pyside6-uic setupHelperUI.ui -o src/setupHelperUI.py
+pyside6-uic setupHelperUI.ui -o src/GUI/setupHelperUI.py
 #reporter
-pyside6-uic setupReportUI.ui -o src/setupReportUI.py
+pyside6-uic setupReportUI.ui -o src/GUI/setupReportUI.py
 #reporter history
-pyside6-uic setupReportHistoryUI.ui -o src/setupReportHistoryUI.py
+pyside6-uic setupReportHistoryUI.ui -o src/GUI/setupReportHistoryUI.py
 #user panel
-pyside6-uic setupUserPanelUI.ui -o src/setupUserPanelUI.py
+pyside6-uic setupUserPanelUI.ui -o src/GUI/setupUserPanelUI.py
+#User edit
+pyside6-uic setupUserEditUI.ui -o src/GUI/setupUserEditUI.py
+#Profile
+pyside6-uic setupProfileUI.ui -o src/GUI/setupProfileUI.py
 
 #Конвертировать файл ресурсов .qrc в .py файл
-pyside6-rcc src/assets/src.qrc -o src/src_rc.py
+pyside6-rcc src/assets/src.qrc -o src/GUI/src_rc.py
 
 #build
 pyinstaller build.spec

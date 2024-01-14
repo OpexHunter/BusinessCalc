@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Профиль</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="src/assets/src.qrc">
+    <normaloff>:/src_ico/online-shop-_1_.ico</normaloff>:/src_ico/online-shop-_1_.ico</iconset>
+  </property>
+  <widget class="QFrame" name="frame_help">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>581</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame#frame_help {
+	background-color: rgba(0, 0, 0, 0.03);
+   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="login">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>241</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame#login {
+	background-color: rgba(0, 0, 0, 0.01);
+   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>221</width>
+       <height>76</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLineEdit" name="l_log">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Логин</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="l_pass">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Пароль</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="l_button">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: rgb(225,225,225);
+    border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(235,235,235);
+}
+
+QPushButton:pressed {
+    background-color: rgb(225,225,225);
+    color: rgba(0,0,0,0.4)
+}</string>
+          </property>
+          <property name="text">
+           <string>Вход</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="reg">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>140</y>
+      <width>241</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame#reg {
+	background-color: rgba(0, 0, 0, 0.01);
+   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>221</width>
+       <height>128</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="r_fio">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Ф.И.О.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="r_log">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>Логин</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="r_pass">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Пароль</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="r_email">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding-left: 5px;
+    color: rgb(110, 110, 110);
+}
+</string>
+        </property>
+        <property name="placeholderText">
+         <string>e-mail</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="r_button">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: rgb(225,225,225);
+    border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(235,235,235);
+}
+
+QPushButton:pressed {
+    background-color: rgb(225,225,225);
+    color: rgba(0,0,0,0.4)
+}</string>
+          </property>
+          <property name="text">
+           <string>Регистрация</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="user">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>501</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame#user {
+	background-color: rgba(0, 0, 0, 0.01);
+   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>32</y>
+       <width>481</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="spacing">
+       <number>1</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="i_name">
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    font-size: 14px;
+    font-family: &quot;Noto Sans&quot;;
+	margin-left: 1px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Пользователь: не авторизован</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="i_access">
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    font-size: 14px;
+    font-family: &quot;Noto Sans&quot;;
+	margin-left: 1px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Уровень доступа: доступ отсутствует</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="Name_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>551</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    font-size: 16px;
+    font-weight: bold;
+	margin-left: 2px;
+    font-family: &quot;Noto Sans&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Профиль</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="info">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>501</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame#info {
+	background-color: rgba(0, 0, 0, 0.01);
+   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="Name_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>501</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: &quot;Noto Sans&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Вход / регистрация</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="load_1">
+    <property name="geometry">
+     <rect>
+      <x>28</x>
+      <y>229</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="load_2">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>280</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="src/assets/src.qrc"/>
+ </resources>
+ <connections/>
+</ui>
