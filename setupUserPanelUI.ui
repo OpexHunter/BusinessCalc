@@ -63,7 +63,7 @@ QPushButton:hover {
 }
 
 QPushButton:pressed {
-    background-color: rgb(225,225,225);
+    background-color: rgb(225,225,255);
     color: rgba(0,0,0,0.4)
 }</string>
       </property>
@@ -92,7 +92,7 @@ QPushButton:hover {
 }
 
 QPushButton:pressed {
-    background-color: rgb(225,225,225);
+    background-color: rgb(225,225,255);
     color: rgba(0,0,0,0.4)
 }</string>
       </property>
@@ -121,7 +121,7 @@ QPushButton:hover {
 }
 
 QPushButton:pressed {
-    background-color: rgb(225,225,225);
+    background-color: rgb(225,225,255);
     color: rgba(0,0,0,0.4)
 }</string>
       </property>

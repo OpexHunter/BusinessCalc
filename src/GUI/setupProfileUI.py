@@ -94,7 +94,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
 
@@ -184,7 +184,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
 
@@ -262,7 +262,7 @@ class Ui_Dialog(object):
         self.load_1.setAlignment(Qt.AlignCenter)
         self.load_2 = QLabel(self.frame_help)
         self.load_2.setObjectName(u"load_2")
-        self.load_2.setGeometry(QRect(290, 260, 241, 21))
+        self.load_2.setGeometry(QRect(290, 280, 241, 21))
         self.load_2.setAlignment(Qt.AlignCenter)
 
         self.retranslateUi(Dialog)

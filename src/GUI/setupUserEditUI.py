@@ -18,16 +18,20 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QFrame,
     QHBoxLayout, QLabel, QPushButton, QSizePolicy,
     QWidget)
+from . import src_rc
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(563, 108)
-        self.pushButton = QPushButton(Dialog)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(460, 80, 91, 24))
-        self.pushButton.setStyleSheet(u"QPushButton {\n"
+        icon = QIcon()
+        icon.addFile(u":/src_ico/online-shop-_1_.ico", QSize(), QIcon.Normal, QIcon.Off)
+        Dialog.setWindowIcon(icon)
+        self.b_save = QPushButton(Dialog)
+        self.b_save.setObjectName(u"b_save")
+        self.b_save.setGeometry(QRect(460, 80, 91, 24))
+        self.b_save.setStyleSheet(u"QPushButton {\n"
 "    background-color: rgb(225,225,225);\n"
 "    border: 1px solid rgba(0,0,0,0.2);\n"
 "	border-radius: 3px;\n"
@@ -38,7 +42,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
         self.frame = QFrame(Dialog)
@@ -56,34 +60,34 @@ class Ui_Dialog(object):
         self.horizontalLayout = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.checkBox = QCheckBox(self.layoutWidget)
-        self.checkBox.setObjectName(u"checkBox")
+        self.can_see = QCheckBox(self.layoutWidget)
+        self.can_see.setObjectName(u"can_see")
         sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.checkBox.sizePolicy().hasHeightForWidth())
-        self.checkBox.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.can_see.sizePolicy().hasHeightForWidth())
+        self.can_see.setSizePolicy(sizePolicy)
 
-        self.horizontalLayout.addWidget(self.checkBox)
+        self.horizontalLayout.addWidget(self.can_see)
 
-        self.checkBox_3 = QCheckBox(self.layoutWidget)
-        self.checkBox_3.setObjectName(u"checkBox_3")
-        sizePolicy.setHeightForWidth(self.checkBox_3.sizePolicy().hasHeightForWidth())
-        self.checkBox_3.setSizePolicy(sizePolicy)
+        self.can_report = QCheckBox(self.layoutWidget)
+        self.can_report.setObjectName(u"can_report")
+        sizePolicy.setHeightForWidth(self.can_report.sizePolicy().hasHeightForWidth())
+        self.can_report.setSizePolicy(sizePolicy)
 
-        self.horizontalLayout.addWidget(self.checkBox_3)
+        self.horizontalLayout.addWidget(self.can_report)
 
-        self.checkBox_2 = QCheckBox(self.layoutWidget)
-        self.checkBox_2.setObjectName(u"checkBox_2")
-        sizePolicy.setHeightForWidth(self.checkBox_2.sizePolicy().hasHeightForWidth())
-        self.checkBox_2.setSizePolicy(sizePolicy)
+        self.admin = QCheckBox(self.layoutWidget)
+        self.admin.setObjectName(u"admin")
+        sizePolicy.setHeightForWidth(self.admin.sizePolicy().hasHeightForWidth())
+        self.admin.setSizePolicy(sizePolicy)
 
-        self.horizontalLayout.addWidget(self.checkBox_2)
+        self.horizontalLayout.addWidget(self.admin)
 
-        self.label = QLabel(self.frame)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(10, 30, 171, 20))
-        self.label.setStyleSheet(u"QLabel {\n"
+        self.l_login = QLabel(self.frame)
+        self.l_login.setObjectName(u"l_login")
+        self.l_login.setGeometry(QRect(10, 30, 181, 20))
+        self.l_login.setStyleSheet(u"QLabel {\n"
 "    font-size: 15px;\n"
 "    font-family: \"Noto Sans\";\n"
 "	margin-left: 1px;\n"
@@ -97,9 +101,9 @@ class Ui_Dialog(object):
 "	margin-left: 2px;\n"
 "    font-family: \"Noto Sans\";\n"
 "}")
-        self.label_3 = QLabel(Dialog)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(10, 80, 441, 31))
+        self.l_fio_email = QLabel(Dialog)
+        self.l_fio_email.setObjectName(u"l_fio_email")
+        self.l_fio_email.setGeometry(QRect(10, 80, 441, 31))
 
         self.retranslateUi(Dialog)
 
@@ -108,12 +112,12 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u0430\u0432 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.checkBox.setText(QCoreApplication.translate("Dialog", u"\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440", None))
-        self.checkBox_3.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u043e\u0442\u0447\u0451\u0442\u043e\u0432", None))
-        self.checkBox_2.setText(QCoreApplication.translate("Dialog", u"\u0410\u0434\u043c\u0438\u043d", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"\u0418\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
+        self.b_save.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.can_see.setText(QCoreApplication.translate("Dialog", u"\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440", None))
+        self.can_report.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u043e\u0442\u0447\u0451\u0442\u043e\u0432", None))
+        self.admin.setText(QCoreApplication.translate("Dialog", u"\u0410\u0434\u043c\u0438\u043d", None))
+        self.l_login.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u041f\u0440\u0430\u0432\u0430 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"\u0410\u0431\u043e\u0431\u0430 \u0410\u0431\u043e\u0431\u043e\u0432\u0438\u0447 | e-mail: aboba@mail.ru", None))
+        self.l_fio_email.setText(QCoreApplication.translate("Dialog", u"\u0424.\u0418.\u041e | e-mail: ...", None))
     # retranslateUi
 

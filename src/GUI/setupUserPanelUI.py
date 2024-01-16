@@ -51,7 +51,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
 
@@ -71,7 +71,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
 
@@ -91,7 +91,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(225,225,225);\n"
+"    background-color: rgb(225,225,255);\n"
 "    color: rgba(0,0,0,0.4)\n"
 "}")
 

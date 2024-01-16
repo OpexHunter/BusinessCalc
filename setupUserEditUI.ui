@@ -13,7 +13,11 @@
   <property name="windowTitle">
    <string>Редактирование прав пользователя</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <property name="windowIcon">
+   <iconset resource="src/assets/src.qrc">
+    <normaloff>:/src_ico/online-shop-_1_.ico</normaloff>:/src_ico/online-shop-_1_.ico</iconset>
+  </property>
+  <widget class="QPushButton" name="b_save">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -34,7 +38,7 @@ QPushButton:hover {
 }
 
 QPushButton:pressed {
-    background-color: rgb(225,225,225);
+    background-color: rgb(225,225,255);
     color: rgba(0,0,0,0.4)
 }</string>
    </property>
@@ -74,7 +78,7 @@ QPushButton:pressed {
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="can_see">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -87,7 +91,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="checkBox_3">
+      <widget class="QCheckBox" name="can_report">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -100,7 +104,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="checkBox_2">
+      <widget class="QCheckBox" name="admin">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -114,12 +118,12 @@ QPushButton:pressed {
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="l_login">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>171</width>
+      <width>181</width>
       <height>20</height>
      </rect>
     </property>
@@ -131,7 +135,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>Имя пользователя</string>
+     <string>Не найден</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -156,7 +160,7 @@ QPushButton:pressed {
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="l_fio_email">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -166,10 +170,12 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="text">
-    <string>Абоба Абобович | e-mail: aboba@mail.ru</string>
+    <string>Ф.И.О | e-mail: ...</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="src/assets/src.qrc"/>
+ </resources>
  <connections/>
 </ui>

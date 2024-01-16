@@ -30,6 +30,20 @@ class Ui_Dialog(object):
         self.SeeReport = QPushButton(Dialog)
         self.SeeReport.setObjectName(u"SeeReport")
         self.SeeReport.setGeometry(QRect(750, 460, 121, 31))
+        self.SeeReport.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,255);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
         self.HistoryTable = QTableView(Dialog)
         self.HistoryTable.setObjectName(u"HistoryTable")
         self.HistoryTable.setGeometry(QRect(0, 0, 881, 451))
