@@ -1,7 +1,7 @@
 import PySide6
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
-    QVBoxLayout, QWidget
+    QVBoxLayout, QWidget, QGraphicsView
 import sys
 from .setupHelperUI import Ui_Dialog as Ui_DialogHelper
 from .setupReportHistoryUI import Ui_Dialog as Ui_DialogHistory
@@ -10,6 +10,10 @@ from .setupUserPanelUI import  Ui_Dialog as Ui_DialogUsers
 from .setupUserEditUI import Ui_Dialog as Ui_DialogUserEdit
 from .setupProfileUI import Ui_Dialog as Ui_DialogProfile
 from src.oracle import Oracle_SQL
+
+from .barReport import BarGramm
+
+
 class DialogHelper(QDialog):
     def __init__(self):
         super().__init__()
@@ -59,6 +63,13 @@ class DialogReport(QDialog):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
 
+        self.ui.figure = BarGramm()
+
+    def updateCanvas(self, canvas):
+        for i in reversed(range(self.ui.verticalLayout_2.count())):
+            self.ui.verticalLayout_2.itemAt(i).widget().setParent(None)
+        self.ui.verticalLayout_2.addWidget(canvas)
+
     def __call__(self, data):
         self.ui.ReportData.setText(f'CASE_ID = {data[0]} | ADDRESS = {data[1]} | NAME = {data[2]}')
         self.ui.rep1.setText(f'Стартовые расходы (FC): {round(data[3])} р.')
@@ -76,6 +87,9 @@ class DialogReport(QDialog):
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
                                     f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
 
+        index = list(['FC', 'VC', 'TR', 'PROFIT'])
+        values = list([data[3], data[4], data[5], data[6]])
+        self.ui.figure.graph(self, index, values)
 class DialogUsers(QDialog):
     def __init__(self, func1, func2):
         super().__init__()
