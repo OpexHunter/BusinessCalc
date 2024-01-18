@@ -63,8 +63,6 @@ class DialogReport(QDialog):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
 
-        self.ui.figure = BarGramm()
-
     def updateCanvas(self, canvas):
         for i in reversed(range(self.ui.verticalLayout_2.count())):
             self.ui.verticalLayout_2.itemAt(i).widget().setParent(None)
@@ -89,6 +87,7 @@ class DialogReport(QDialog):
 
         index = list(['FC', 'VC', 'TR', 'PROFIT'])
         values = list([data[3], data[4], data[5], data[6]])
+        self.ui.figure = BarGramm()
         self.ui.figure.graph(self, index, values)
 class DialogUsers(QDialog):
     def __init__(self, func1, func2):
