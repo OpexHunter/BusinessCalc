@@ -583,7 +583,7 @@ class Ui_BuisnessCalc(object):
         self.label_120.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.TR2 = QFrame(self.TR)
         self.TR2.setObjectName(u"TR2")
-        self.TR2.setGeometry(QRect(0, 40, 501, 61))
+        self.TR2.setGeometry(QRect(0, 40, 441, 61))
         self.TR2.setStyleSheet(u"QFrame#TR2 {\n"
 "	background-color: rgba(0, 0, 0, 0.01);\n"
 "   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;\n"
@@ -621,7 +621,7 @@ class Ui_BuisnessCalc(object):
         self.TR2.setFrameShadow(QFrame.Raised)
         self.layoutWidget_80 = QWidget(self.TR2)
         self.layoutWidget_80.setObjectName(u"layoutWidget_80")
-        self.layoutWidget_80.setGeometry(QRect(10, 30, 174, 26))
+        self.layoutWidget_80.setGeometry(QRect(10, 30, 181, 26))
         self.horizontalLayout_115 = QHBoxLayout(self.layoutWidget_80)
         self.horizontalLayout_115.setObjectName(u"horizontalLayout_115")
         self.horizontalLayout_115.setContentsMargins(0, 0, 0, 0)
@@ -637,16 +637,15 @@ class Ui_BuisnessCalc(object):
         self.i_TR1_1 = QComboBox(self.layoutWidget_80)
         self.i_TR1_1.addItem("")
         self.i_TR1_1.addItem("")
-        self.i_TR1_1.addItem("")
         self.i_TR1_1.setObjectName(u"i_TR1_1")
-        self.i_TR1_1.setMinimumSize(QSize(80, 0))
+        self.i_TR1_1.setMinimumSize(QSize(85, 0))
         self.i_TR1_1.setStyleSheet(u"")
 
         self.horizontalLayout_115.addWidget(self.i_TR1_1)
 
         self.label_39 = QLabel(self.TR2)
         self.label_39.setObjectName(u"label_39")
-        self.label_39.setGeometry(QRect(0, 10, 501, 21))
+        self.label_39.setGeometry(QRect(0, 10, 441, 21))
         self.label_39.setStyleSheet(u"QLabel {\n"
 "    font-size: 13px;\n"
 "    font-weight: bold;\n"
@@ -656,11 +655,11 @@ class Ui_BuisnessCalc(object):
         self.label_39.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.layoutWidget_79 = QWidget(self.TR2)
         self.layoutWidget_79.setObjectName(u"layoutWidget_79")
-        self.layoutWidget_79.setGeometry(QRect(240, 30, 252, 26))
+        self.layoutWidget_79.setGeometry(QRect(210, 30, 221, 26))
         self.horizontalLayout_114 = QHBoxLayout(self.layoutWidget_79)
-        self.horizontalLayout_114.setSpacing(3)
+        self.horizontalLayout_114.setSpacing(4)
         self.horizontalLayout_114.setObjectName(u"horizontalLayout_114")
-        self.horizontalLayout_114.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_114.setContentsMargins(4, 0, 0, 0)
         self.label_118 = QLabel(self.layoutWidget_79)
         self.label_118.setObjectName(u"label_118")
 
@@ -672,7 +671,7 @@ class Ui_BuisnessCalc(object):
 
         self.i_TR1_2 = QLineEdit(self.layoutWidget_79)
         self.i_TR1_2.setObjectName(u"i_TR1_2")
-        self.i_TR1_2.setMinimumSize(QSize(80, 0))
+        self.i_TR1_2.setMinimumSize(QSize(40, 0))
         self.i_TR1_2.setMaximumSize(QSize(70, 16777215))
 
         self.horizontalLayout_114.addWidget(self.i_TR1_2)
@@ -905,6 +904,7 @@ class Ui_BuisnessCalc(object):
         self.horizontalLayout_149.addItem(self.horizontalSpacer_149)
 
         self.i_TR2_2 = QComboBox(self.layoutWidget_107)
+        self.i_TR2_2.addItem("")
         self.i_TR2_2.addItem("")
         self.i_TR2_2.addItem("")
         self.i_TR2_2.setObjectName(u"i_TR2_2")
@@ -1287,9 +1287,8 @@ class Ui_BuisnessCalc(object):
         self.h_TC13.setText("")
         self.label_120.setText(QCoreApplication.translate("BuisnessCalc", u"\u0412\u0432\u043e\u0434 \u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u0440\u0435\u0434\u043f\u0440\u0438\u044f\u0442\u0438\u044f", None))
         self.label_119.setText(QCoreApplication.translate("BuisnessCalc", u"\u0422\u0438\u043f \u0440\u0435\u0441\u0442\u043e\u0440\u0430\u043d\u0430", None))
-        self.i_TR1_1.setItemText(0, QCoreApplication.translate("BuisnessCalc", u"\u0424\u0430\u0441\u0442 \u0444\u0443\u0434", None))
-        self.i_TR1_1.setItemText(1, QCoreApplication.translate("BuisnessCalc", u"\u041e\u0431\u044b\u0447\u043d\u044b\u0439", None))
-        self.i_TR1_1.setItemText(2, QCoreApplication.translate("BuisnessCalc", u"\u0414\u043e\u0440\u043e\u0433\u043e\u0439", None))
+        self.i_TR1_1.setItemText(0, QCoreApplication.translate("BuisnessCalc", u"\u041e\u0431\u044b\u0447\u043d\u044b\u0439", None))
+        self.i_TR1_1.setItemText(1, QCoreApplication.translate("BuisnessCalc", u"\u0424\u0430\u0441\u0442 \u0444\u0443\u0434", None))
 
         self.label_39.setText(QCoreApplication.translate("BuisnessCalc", u"\u0411\u0430\u0437\u043e\u0432\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435", None))
         self.label_118.setText(QCoreApplication.translate("BuisnessCalc", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043a\u043e\u043d\u043a\u0443\u0440\u0435\u043d\u0442\u043e\u0432", None))
@@ -1306,8 +1305,9 @@ class Ui_BuisnessCalc(object):
         self.h_TR2_1.setText("")
         self.label_42.setText(QCoreApplication.translate("BuisnessCalc", u"\u0421\u0440\u0435\u0434\u043d\u0438\u0439 \u0447\u0435\u043a (\u041f\u043e \u0433\u043e\u0440\u043e\u0434\u0443)", None))
         self.label_156.setText(QCoreApplication.translate("BuisnessCalc", u"\u0413\u043e\u0440\u043e\u0434", None))
-        self.i_TR2_2.setItemText(0, QCoreApplication.translate("BuisnessCalc", u"\u041c\u043e\u0441\u043a\u0432\u0430", None))
-        self.i_TR2_2.setItemText(1, QCoreApplication.translate("BuisnessCalc", u"\u0421\u0430\u043d\u043a\u0442-\u041f\u0438\u0442\u0435\u0440\u0431\u0443\u0440\u0433", None))
+        self.i_TR2_2.setItemText(0, QCoreApplication.translate("BuisnessCalc", u"...", None))
+        self.i_TR2_2.setItemText(1, QCoreApplication.translate("BuisnessCalc", u"\u041c\u043e\u0441\u043a\u0432\u0430", None))
+        self.i_TR2_2.setItemText(2, QCoreApplication.translate("BuisnessCalc", u"\u0421\u0430\u043d\u043a\u0442-\u041f\u0438\u0442\u0435\u0440\u0431\u0443\u0440\u0433", None))
 
         self.h_TR2_2.setText("")
         self.label_113.setText(QCoreApplication.translate("BuisnessCalc", u"\u041f\u043e \u0441\u0440\u0435\u0434\u043d\u0435\u0439 \u0417\u041f", None))

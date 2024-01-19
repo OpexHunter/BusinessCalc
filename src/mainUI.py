@@ -4,6 +4,9 @@ from src.oracle import Oracle_SQL
 import pickle
 import threading
 
+AVG_CHECK_COMMON = {'Москва': 900, 'Санкт-Питербург': 850}
+AVG_CHECK_FAST = {'Москва': 700, 'Санкт-Питербург': 650}
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -37,7 +40,7 @@ class MainWindow(QMainWindow):
             self.ui.h_TR2_1.clicked.connect(lambda: self.__helper_dialog('Средний доход с каждого заказа посетителя (руб)'))
             self.ui.h_TR2_2.clicked.connect(lambda: self.__helper_dialog('Средний доход с каждого заказа посетителя в заведения похожего типа в городе городе (руб)'))
             self.ui.h_TR2_3.clicked.connect(lambda: self.__helper_dialog('Среднемесячная заработная плата жителей данного города за месяц'))
-            self.ui.h_TR3_1.clicked.connect(lambda: self.__helper_dialog('Количество людей, проживающих рядом с заведением в радиусе 500 м'))
+            self.ui.h_TR3_1.clicked.connect(lambda: self.__helper_dialog('Количество людей, проживающих рядом с заведением в радиусе 500 м\nСайт партнёр для рассчёта: https://gisbuyer.com/'))
             self.ui.h_TR3_2.clicked.connect(lambda: self.__helper_dialog('Количество людей, проходящих через данную область, радиуса 300 м, за определённый промежуток времени (проходимость места)'))
             self.ui.h_TR3_3.clicked.connect(lambda: self.__helper_dialog('Суммарное количество остановок общественного транспорта и станций метро рядом с заведением в радиусе 300 м'))
         __buttons_connect()
@@ -75,7 +78,13 @@ class MainWindow(QMainWindow):
         if selected:
             cls.user_editUI.show()
             cls.user_editUI.raise_()
-            cls.user_editUI(Oracle_SQL.get_user_data(USER = cls.user_panel.get_selected_login(), PASSWORD = '', PASS_MODE = False))
+            cls.user_editUI(Oracle_SQL.get_user_data(USER = selected, PASSWORD = '', PASS_MODE = False))
+    @classmethod
+    def delete_user(cls):
+        selected = cls.user_panel.get_selected_login()
+        if selected:
+            Oracle_SQL.remove_user(USER = selected)
+            cls.user_panel_refresh()
     @classmethod
     def __profile_dialog(cls):
         cls.profile.show()
@@ -85,10 +94,12 @@ class MainWindow(QMainWindow):
         if self.get_access_lvl()[4]:
             if self.ui.i_TR2_1.text() != '':
                 AVG_CHECK = float(self.ui.i_TR2_1.text())
-            elif self.ui.i_TR2_2.text() != '':
-                AVG_CHECK = float(self.ui.i_TR2_2.text())
+            elif self.ui.i_TR2_2.currentText() != '...':
+                val = self.ui.i_TR2_2.currentText()
+                AVG_CHECK = AVG_CHECK_COMMON[val] if self.ui.i_TR1_1.currentText() == 'Обычный' else AVG_CHECK_FAST[val]
             elif self.ui.i_TR2_3.text() != '':
-                AVG_CHECK = float(self.ui.i_TR2_3.text())
+                #AVG_CHECK = float(self.ui.i_TR2_3.text())
+                AVG_CHECK = 0
             else:
                 AVG_CHECK = 0
             Oracle_SQL.add_report(float(self.ui.i_TC1.text()),
@@ -138,7 +149,7 @@ if __name__ == "__main__":
     MainWindow.report = DialogReport()
     MainWindow.history = DialogHistory(lambda: MainWindow.report_dialog())
     MainWindow.user_editUI = DialogUserEdit(MainWindow.user_panel_refresh)
-    MainWindow.user_panel = DialogUsers(*[lambda: MainWindow.user_edit()], MainWindow.user_panel_refresh)
+    MainWindow.user_panel = DialogUsers(*[lambda: MainWindow.user_edit()], MainWindow.user_panel_refresh, MainWindow.delete_user)
     MainWindow.profile = DialogProfile(lambda: Oracle_SQL.add_user(MainWindow.profile.ui.r_fio.text(), MainWindow.profile.ui.r_email.text(), MainWindow.profile.ui.r_log.text().lower(), MainWindow.profile.ui.r_pass.text()),
                                        lambda: MainWindow.profile_log())
 

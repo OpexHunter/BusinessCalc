@@ -43,7 +43,7 @@ class DialogHistory(QDialog):
         self.ui.HistoryTable.setColumnWidth(0, 50)
         self.ui.HistoryTable.setColumnWidth(1, 130)
         self.ui.HistoryTable.setColumnWidth(2, 350)
-        self.ui.HistoryTable.setColumnWidth(3, 244)
+        self.ui.HistoryTable.setColumnWidth(3, 220)
         self.ui.HistoryTable.setColumnWidth(4, 90)
         self.ui.HistoryTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
         self.ui.HistoryTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Fixed)
@@ -90,13 +90,14 @@ class DialogReport(QDialog):
         self.ui.figure = BarGramm()
         self.ui.figure.graph(self, index, values)
 class DialogUsers(QDialog):
-    def __init__(self, func1, func2):
+    def __init__(self, func1, func2, func3):
         super().__init__()
         self.ui = Ui_DialogUsers()
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui.commit.clicked.connect(func1)
         self.ui.refresh.clicked.connect(func2)
+        self.ui.remove.clicked.connect(func3)
     def __call__(self, data):
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(['Ф.И.О.', 'Логин', 'Уровень доступа'])

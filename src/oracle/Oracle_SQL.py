@@ -24,15 +24,28 @@ def add_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, 
                AVG_CHECK, RES_TRAFFIC, NODE_TRAFFIC, SIGHT_TRAFFIC, ADDRESS, NAME):
 
     #Расчёты
-    FC = RENT_COST + REPAIR_COST + EQUIP_COST + ADVERTISING_FC + SUBSIDIZING
-    Q=RES_TRAFFIC+NODE_TRAFFIC+SIGHT_TRAFFIC
-    TR=AVG_CHECK*Q
-    TAX_RATE=0.1 #налог
-    INS_TAXES=TAX_RATE*TR
-    VC=INGR_COST+CREDIT+SALARY + INSURANCE +MAINTENANCE+KU+LOGISTICS+ADVERTISING_VC
-    VC=VC+INS_TAXES
-    TIMEE=FC/(TR-VC)
-    PROFIT=TR-VC
+    FC = RENT_COST + REPAIR_COST + EQUIP_COST + ADVERTISING_FC - SUBSIDIZING
+
+    if RES_TYPE == 'Обычный':
+        RES_DOL, RES_V = 0.0064, 1.2
+        NODE_DOL, NODE_V = 0.0054, 1.56
+        SIGHT_DOL, SIGHT_V = 0.0068, 1.96
+    else:
+        RES_DOL, RES_V = 0.00642, 1.08
+        NODE_DOL, NODE_V = 0.0013, 1.88
+        SIGHT_DOL, SIGHT_V = 0.0079, 1.76
+
+    Q = RES_TRAFFIC * RES_DOL * RES_V * + NODE_TRAFFIC * NODE_DOL * NODE_V / 15 + SIGHT_TRAFFIC * SIGHT_DOL * SIGHT_V
+    print(COMPETITORS)
+    Q = Q / COMPETITORS
+
+    TR = AVG_CHECK * Q
+    VC= INGR_COST + CREDIT+SALARY + INSURANCE + MAINTENANCE + KU + LOGISTICS + ADVERTISING_VC
+    PROFIT = TR - VC
+    if PROFIT > 0:
+        PROFIT *= 0.867
+    TIMEE=FC/PROFIT
+
 
     REPORT_DATE = datetime.datetime.now()
     data=[(REPORT_DATE, RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, INGR_COST, CREDIT,
@@ -120,6 +133,18 @@ def edit_user_data(USER, can_see, can_report, admin):
     s = "'"
     sql = (f'UPDATE USERS '
            f'SET CAN_SEE = {can_see}, CAN_REPORT = {can_report}, ADMIN = {admin} '
+           f'WHERE LOGIN = {s}{USER}{s}')
+
+    cursor.execute(sql)
+    connection.commit()
+
+def remove_user(USER):
+    dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
+    connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
+                                   dsn=dsn)
+    cursor = connection.cursor()
+    s = "'"
+    sql = (f'DELETE FROM USERS '
            f'WHERE LOGIN = {s}{USER}{s}')
 
     cursor.execute(sql)
