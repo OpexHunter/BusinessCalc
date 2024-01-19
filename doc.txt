@@ -19,8 +19,6 @@ pyside6-rcc src/assets/src.qrc -o src/GUI/src_rc.py
 #build
 pyinstaller build.spec
 
-
-
 #Создания таблицы в бд
 CREATE TABLE HISTORY
 (
@@ -53,3 +51,26 @@ CREATE TABLE HISTORY
   PROFIT FLOAT,
   TIMEE FLOAT
 );
+#Создание таблицы USERS
+CREATE TABLE USERS (
+    FIO VARCHAR2(255),
+    Email VARCHAR2(255) UNIQUE,
+    Login VARCHAR2(255) UNIQUE,
+    Password VARCHAR2(255),
+    Can_see NUMBER(1) CHECK (Can_see IN (0, 1)),
+    Can_report NUMBER(1) CHECK (Can_report IN (0, 1)),
+    Admin NUMBER(1) CHECK (Admin IN (0, 1))
+);
+
+#Выдача прав через БД (Если ни у кого нету прав)
+UPDATE USERS
+SET CAN_SEE = 1,
+    CAN_REPORT = 1,
+    ADMIN = 1
+WHERE LOGIN = 'opex';
+
+#Создание удаление авто-заполнителя CASE_ID
+create sequence history_id_seq
+start with 1
+increment by 1;
+DROP SEQUENCE history_id_seq;
