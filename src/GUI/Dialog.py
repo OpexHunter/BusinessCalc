@@ -1,8 +1,10 @@
 import PySide6
+from PySide6.QtCore import QBuffer, QIODevice
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
     QVBoxLayout, QWidget, QGraphicsView
 import sys
+
 from .setupHelperUI import Ui_Dialog as Ui_DialogHelper
 from .setupReportHistoryUI import Ui_Dialog as Ui_DialogHistory
 from .setupReportUI import  Ui_Dialog as Ui_DialogReport
@@ -12,7 +14,14 @@ from .setupProfileUI import Ui_Dialog as Ui_DialogProfile
 from src.oracle import Oracle_SQL
 
 from .barReport import BarGramm
+from PIL import Image
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import landscape
+from reportlab.lib.utils import ImageReader
 
+import subprocess
+import os
 
 class DialogHelper(QDialog):
     def __init__(self):
@@ -31,6 +40,7 @@ class DialogHistory(QDialog):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui.SeeReport.clicked.connect(func)
+        self.ui.refresh.clicked.connect(lambda: self.__call__(Oracle_SQL.get_history_data()))
 
     def __call__(self, data):
         model = QStandardItemModel()
@@ -62,13 +72,61 @@ class DialogReport(QDialog):
         self.ui = Ui_DialogReport()
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
+        self.ui.save_pdf.clicked.connect(self.save_pdf)
+        self.ui.save_folder_open.clicked.connect(self.open_save_dir)
+
+    def save_pdf(self):
+        pixmap = self.grab()
+
+        qimage = pixmap.toImage()
+        buffer = QBuffer()
+        buffer.open(QIODevice.ReadWrite)
+        qimage.save(buffer, "PNG")
+        pil_im = Image.open(BytesIO(buffer.data()))
+
+        # Обрезаем изображение
+        cropped_img = pil_im.crop((0, 0, 741, 398))
+
+        # Создаем PDF с подходящим размером страницы и ориентацией
+        pdf_path = f"reports/report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.pdf"
+        c = canvas.Canvas(pdf_path, pagesize=landscape((741, 398)))
+
+        # Получаем байтовый поток из обрезанного изображения
+        img_byte_arr = BytesIO()
+        cropped_img.save(img_byte_arr, format='PNG')
+        img_byte_arr.seek(0)
+
+        # Вставляем изображение, выравнивая его по верхнему левому углу страницы
+        c.drawImage(ImageReader(img_byte_arr), 0, 0, width=741, height=398, mask='auto')
+        c.save()
 
     def updateCanvas(self, canvas):
         for i in reversed(range(self.ui.verticalLayout_2.count())):
             self.ui.verticalLayout_2.itemAt(i).widget().setParent(None)
         self.ui.verticalLayout_2.addWidget(canvas)
 
+    def open_save_dir(self):
+        # Текущий путь
+        current_dir = os.path.dirname(os.path.abspath(__name__))
+        # Переход в папку reports
+        reports_dir_path = os.path.join(current_dir, 'reports')
+
+        if not os.path.exists(reports_dir_path):
+            os.makedirs(reports_dir_path)
+
+        if os.name == 'nt':  # Если операционная система Windows
+            subprocess.run(['explorer', reports_dir_path])
+        elif os.name == 'posix':
+            if sys.platform == 'darwin':  # MacOS
+                subprocess.run(['open', reports_dir_path])
+            else:  # Большинство дистрибутивов Linux, Unix, и т.д.
+                subprocess.run(['xdg-open', reports_dir_path])
+        else:
+            raise RuntimeError("Неподдерживаемая операционная система")
+
     def __call__(self, data):
+        self.kesh_name = data[2]
+        self.kesh_data = data[8]
         self.ui.ReportData.setText(f'CASE_ID = {data[0]} | ADDRESS = {data[1]} | NAME = {data[2]}')
         self.ui.rep1.setText(f'Стартовые расходы (FC): {round(data[3])} р.')
         self.ui.rep2.setText(f'Ежемесячные расходы (VC): {round(data[4])} р.')
@@ -77,13 +135,13 @@ class DialogReport(QDialog):
         self.ui.rep5.setText(f'Время окупаемости: {int(data[7])} месяцев')
         if data[6] / data[4] > 0.2:
             self.ui.rep_dop.setText(f'Условия старта хорошие, бизнесс можно открывать.\n'
-                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
+                                    f'Рентабельность: {round(data[6] / data[4] * 100, 2)}%')
         elif data[6] / data[4] > 0.1:
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
-                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
+                                    f'Рентабельность: {round(data[6] / data[4]  * 100, 2)}%')
         else:
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
-                                    f'Рентабельность: {round(data[6] / data[4], 2) * 100}%')
+                                    f'Рентабельность: {round(data[6] / data[4]  * 100, 2)}%')
 
         index = list(['FC', 'VC', 'TR', 'PROFIT'])
         values = list([data[3], data[4], data[5], data[6]])

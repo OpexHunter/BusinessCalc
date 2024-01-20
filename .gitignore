@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 src/oracle/*.dll
+src/reports/*
 .Python
 build/
 develop-eggs/

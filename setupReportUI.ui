@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>741</width>
-    <height>422</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
      <x>13</x>
      <y>40</y>
      <width>721</width>
-     <height>361</height>
+     <height>351</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -274,14 +274,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <height>301</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QGraphicsView" name="graphic1"/>
-     </item>
-     <item>
-      <widget class="QGraphicsView" name="graphic2"/>
-     </item>
-    </layout>
+    <layout class="QVBoxLayout" name="verticalLayout_2"/>
    </widget>
   </widget>
   <widget class="QLabel" name="ReportData">
@@ -311,6 +304,97 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="save_xlsx">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>400</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: rgb(225,225,225);
+    border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(235,235,235);
+}
+
+QPushButton:pressed {
+    background-color: rgb(225,225,255);
+    color: rgba(0,0,0,0.4)
+}</string>
+   </property>
+   <property name="text">
+    <string>Сохранить в .xlsx</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="save_pdf">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>400</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: rgb(225,225,225);
+    border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(235,235,235);
+}
+
+QPushButton:pressed {
+    background-color: rgb(225,225,255);
+    color: rgba(0,0,0,0.4)
+}</string>
+   </property>
+   <property name="text">
+    <string>Сохранить в .pdf</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="save_folder_open">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>400</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: rgb(225,225,225);
+    border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(235,235,235);
+}
+
+QPushButton:pressed {
+    background-color: rgb(225,225,255);
+    color: rgba(0,0,0,0.4)
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="src/assets/src.qrc">
+     <normaloff>:/src_ico/folder_open_FILL0_wght400_GRAD0_opsz24.ico</normaloff>:/src_ico/folder_open_FILL0_wght400_GRAD0_opsz24.ico</iconset>
    </property>
   </widget>
  </widget>

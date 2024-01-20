@@ -36,7 +36,6 @@ def add_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, 
         SIGHT_DOL, SIGHT_V = 0.0079, 1.76
 
     Q = RES_TRAFFIC * RES_DOL * RES_V * + NODE_TRAFFIC * NODE_DOL * NODE_V / 15 + SIGHT_TRAFFIC * SIGHT_DOL * SIGHT_V
-    print(COMPETITORS)
     Q = Q / COMPETITORS
 
     TR = AVG_CHECK * Q
@@ -100,7 +99,7 @@ def get_report_data(CASE_ID = '0'):
                                    dsn=dsn)
     cursor = connection.cursor()
 
-    sql = f"""SELECT CASE_ID, ADDRESS, NAME, FC, VC, TR, PROFIT, TIMEE
+    sql = f"""SELECT CASE_ID, ADDRESS, NAME, FC, VC, TR, PROFIT, TIMEE, REPORT_DATE
              FROM history
              WHERE CASE_ID = {CASE_ID}
              ORDER BY 1 DESC"""

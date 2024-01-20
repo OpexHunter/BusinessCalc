@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="src_ico">
+    <file>folder_open_FILL0_wght400_GRAD0_opsz24.ico</file>
     <file>question.ico</file>
     <file>app.ico</file>
     <file>online-shop.ico</file>

@@ -47,6 +47,23 @@ class Ui_Dialog(object):
         self.HistoryTable = QTableView(Dialog)
         self.HistoryTable.setObjectName(u"HistoryTable")
         self.HistoryTable.setGeometry(QRect(0, 0, 881, 451))
+        self.refresh = QPushButton(Dialog)
+        self.refresh.setObjectName(u"refresh")
+        self.refresh.setGeometry(QRect(650, 460, 91, 31))
+        self.refresh.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,255);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
 
         self.retranslateUi(Dialog)
 
@@ -56,5 +73,6 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0418\u0441\u0442\u043e\u0440\u0438\u044f \u043e\u0442\u0447\u0451\u0442\u043e\u0432", None))
         self.SeeReport.setText(QCoreApplication.translate("Dialog", u"\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u043e\u0442\u0447\u0451\u0442\u0430", None))
+        self.refresh.setText(QCoreApplication.translate("Dialog", u"\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c", None))
     # retranslateUi
 

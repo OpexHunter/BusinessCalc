@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QGraphicsView,
-    QLabel, QSizePolicy, QTextBrowser, QVBoxLayout,
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QLabel,
+    QPushButton, QSizePolicy, QTextBrowser, QVBoxLayout,
     QWidget)
 from . import src_rc
 
@@ -24,13 +24,13 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(741, 422)
+        Dialog.resize(741, 440)
         icon = QIcon()
         icon.addFile(u":/src_ico/online-shop-_1_.ico", QSize(), QIcon.Normal, QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.res = QFrame(Dialog)
         self.res.setObjectName(u"res")
-        self.res.setGeometry(QRect(13, 40, 721, 361))
+        self.res.setGeometry(QRect(13, 40, 721, 351))
         self.res.setStyleSheet(u"QFrame#res {\n"
 "	background-color: rgba(0, 0, 0, 0.03);\n"
 "   border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;\n"
@@ -170,16 +170,6 @@ class Ui_Dialog(object):
         self.verticalLayout_2 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.graphic1 = QGraphicsView(self.layoutWidget1)
-        self.graphic1.setObjectName(u"graphic1")
-
-        self.verticalLayout_2.addWidget(self.graphic1)
-
-        self.graphic2 = QGraphicsView(self.layoutWidget1)
-        self.graphic2.setObjectName(u"graphic2")
-
-        self.verticalLayout_2.addWidget(self.graphic2)
-
         self.ReportData = QLabel(Dialog)
         self.ReportData.setObjectName(u"ReportData")
         self.ReportData.setGeometry(QRect(-10, 0, 761, 31))
@@ -195,6 +185,60 @@ class Ui_Dialog(object):
 "\n"
 "")
         self.ReportData.setAlignment(Qt.AlignCenter)
+        self.save_xlsx = QPushButton(Dialog)
+        self.save_xlsx.setObjectName(u"save_xlsx")
+        self.save_xlsx.setGeometry(QRect(480, 400, 121, 31))
+        self.save_xlsx.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,255);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
+        self.save_pdf = QPushButton(Dialog)
+        self.save_pdf.setObjectName(u"save_pdf")
+        self.save_pdf.setGeometry(QRect(610, 400, 121, 31))
+        self.save_pdf.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,255);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
+        self.save_folder_open = QPushButton(Dialog)
+        self.save_folder_open.setObjectName(u"save_folder_open")
+        self.save_folder_open.setGeometry(QRect(440, 400, 31, 31))
+        self.save_folder_open.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(225,225,225);\n"
+"    border: 1px solid rgba(0,0,0,0.2);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(235,235,235);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(225,225,255);\n"
+"    color: rgba(0,0,0,0.4)\n"
+"}")
+        icon1 = QIcon()
+        icon1.addFile(u":/src_ico/folder_open_FILL0_wght400_GRAD0_opsz24.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.save_folder_open.setIcon(icon1)
 
         self.retranslateUi(Dialog)
 
@@ -221,5 +265,8 @@ class Ui_Dialog(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0421\u0442\u043e\u0438\u0442 \u043e\u0431\u0440\u0430\u0442\u0438\u0442\u044c \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u043d\u0430 \u0434\u0440\u0443\u0433\u0438\u0435 \u043c\u0435\u0441\u0442\u0430.<br />\u0422.\u043a. \u0432 \u0446\u0435\u043b\u043e\u043c \u043f\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u0438 \u043d\u0438\u0436\u0435 \u0441\u0440\u0435\u0434\u043d\u0435\u0433\u043e."
                         "</p></body></html>", None))
         self.ReportData.setText(QCoreApplication.translate("Dialog", u"CASE_ID = 10 | ADDRESS = '\u0433.\u041c\u043e\u0441\u043a\u0432\u0430 \u0443\u043b.\u0421\u0442\u0443\u0434\u0435\u043d\u0447\u0435\u0441\u043a\u0430\u044f \u0434.33' | NAME = '\u0420\u0435\u0441\u0442\u043e\u0440\u0430\u043d \"\u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f\"'", None))
+        self.save_xlsx.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0432 .xlsx", None))
+        self.save_pdf.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0432 .pdf", None))
+        self.save_folder_open.setText("")
     # retranslateUi
 
