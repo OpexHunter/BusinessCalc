@@ -99,7 +99,7 @@ class DialogReport(QDialog):
                            'Кол-во конкурентов',
                            'Средний чек',
                            'ВСЕГО'])
-        print(data)
+
         df = pd.DataFrame({
             'FC' : {
                 list_index[0] : data[2],    #Покупка помещения
