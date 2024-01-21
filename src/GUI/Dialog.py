@@ -132,6 +132,11 @@ class DialogReport(QDialog):
             'Окупаемость': {
                  list_index[19] : data[27]} #Всего
         }, index = list_index)
+
+        # Если папки не существует то он её создаст
+        reports_dir = os.path.join(os.getcwd(), 'reports')
+        if not os.path.exists(reports_dir):
+            os.makedirs(reports_dir)
         excel_path = f"reports/report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.xlsx"
         df.to_excel(excel_path)
 
@@ -158,6 +163,11 @@ class DialogReport(QDialog):
 
         # Вставляем изображение, выравнивая его по верхнему левому углу страницы
         c.drawImage(ImageReader(img_byte_arr), 0, 0, width=741, height=398, mask='auto')
+
+        # Если папки не существует то он её создаст
+        reports_dir = os.path.join(os.getcwd(), 'reports')
+        if not os.path.exists(reports_dir):
+            os.makedirs(reports_dir)
         c.save()
 
     def updateCanvas(self, canvas):
