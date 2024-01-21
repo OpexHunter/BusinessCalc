@@ -93,6 +93,22 @@ def add_user(FIO , EMAIL, LOGIN, PASSWORD, CAN_SEE = 0, CAN_REPORT = 0, ADMIN = 
 
     cursor.executemany(sql,data)
     connection.commit()
+
+def get_full_report_data(CASE_ID = '0'):
+    dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
+    connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
+                                   dsn=dsn)
+    cursor = connection.cursor()
+
+    sql = f"""SELECT *
+             FROM history
+             WHERE CASE_ID = {CASE_ID}
+             ORDER BY 1 DESC"""
+    result=cursor.execute(sql)
+
+    for row in result:
+        return [*list(row)]
+
 def get_report_data(CASE_ID = '0'):
     dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
     connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',

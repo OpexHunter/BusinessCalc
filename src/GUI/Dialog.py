@@ -1,4 +1,5 @@
 import PySide6
+import pandas as pd
 from PySide6.QtCore import QBuffer, QIODevice
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QFileDialog, QHeaderView, QTableWidgetItem, QTableView, \
@@ -74,6 +75,65 @@ class DialogReport(QDialog):
         self.setFixedSize(self.width(), self.height())
         self.ui.save_pdf.clicked.connect(self.save_pdf)
         self.ui.save_folder_open.clicked.connect(self.open_save_dir)
+        self.ui.save_xlsx.clicked.connect(self.save_excel)
+
+    def save_excel(self):
+        data = Oracle_SQL.get_full_report_data(self.kesh_id)
+        list_index = list(['Покупка помещения',
+                           'Ремонт',
+                           'Оборудование',
+                           'Реклама (стартовая)',
+                           'Cубсидирование',
+                           'Себестоимость ингридиентов',
+                           '% кредита',
+                           'ЗП',
+                           'Страхование',
+                           'Уборка,тех.обслуживание',
+                           'Коммунальные услуги',
+                           'Логистика',
+                           'Реклама (после старта)',
+                           'Трафик проживающих(500м)',
+                           'Узловой трафик',
+                           'Трафик мест скопления',
+                           'Тип ресторана',
+                           'Кол-во конкурентов',
+                           'Средний чек',
+                           'ВСЕГО'])
+        print(data)
+        df = pd.DataFrame({
+            'FC' : {
+                list_index[0] : data[2],    #Покупка помещения
+                list_index[1] : data[3],    #Ремонт
+                list_index[2] : data[4],    #Оборудование
+                list_index[3] : data[5],    #Реклама (стартовая)
+                list_index[4] : data[6],    #Cубсидирование
+                list_index[19] :data[24]},  #Всего
+            'VC' : {
+                list_index[5] : data[7],    #Себестоимость ингридиентов
+                list_index[6] : data[8],    #% кредита
+                list_index[7] : data[9],    #ЗП
+                list_index[8] : data[10],   #Страхование
+                list_index[9] : data[11],   #Уборка,тех.обслуживание
+                list_index[10] :data[12],   #Коммунальные услуги
+                list_index[11] :data[13],   #Логистика
+                list_index[12] :data[14],   #Реклама (после старта)
+                list_index[19] :data[23]},  #Всего
+            'TR' : {
+                list_index[13] : data[18],  #Трафик проживающих(500м)
+                list_index[14] : data[19],  #Узловой трафик
+                list_index[15] : data[20],  #Трафик мест скопления
+                list_index[19] : data[25]}, #Всего
+            'Данные предприятия' : {
+                list_index[16] : data[15],  #Тип ресторана
+                list_index[17] : data[16],  #Кол-во конкурентов
+                list_index[18] : data[17]}, #Средний чек
+            'Прибыль' : {
+                list_index[19] : data[26]}, #Всего
+            'Окупаемость': {
+                 list_index[19] : data[27]} #Всего
+        }, index = list_index)
+        excel_path = f"reports/report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.xlsx"
+        df.to_excel(excel_path)
 
     def save_pdf(self):
         pixmap = self.grab()
@@ -127,6 +187,7 @@ class DialogReport(QDialog):
     def __call__(self, data):
         self.kesh_name = data[2]
         self.kesh_data = data[8]
+        self.kesh_id = data[0]
         self.ui.ReportData.setText(f'CASE_ID = {data[0]} | ADDRESS = {data[1]} | NAME = {data[2]}')
         self.ui.rep1.setText(f'Стартовые расходы (FC): {round(data[3])} р.')
         self.ui.rep2.setText(f'Ежемесячные расходы (VC): {round(data[4])} р.')
