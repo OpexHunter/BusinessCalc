@@ -3,6 +3,7 @@ from src.GUI.Dialog import *
 from src.oracle import Oracle_SQL
 import pickle
 import threading
+import bcrypt
 
 AVG_CHECK_COMMON = {'Москва': 900, 'Санкт-Питербург': 850}
 AVG_CHECK_FAST = {'Москва': 700, 'Санкт-Питербург': 650}
@@ -126,19 +127,16 @@ class MainWindow(QMainWindow):
                                   )
     @classmethod
     def get_access_lvl(cls):
-        try:
-            with open('user_data.pkl', 'rb') as file:
-                user_data = pickle.load(file)
-                access = Oracle_SQL.get_user_data(*user_data)
-                if access:
-                    access = access[0]
-                    if access[5]:
-                        access[4], access[3] = 1, 1
-                    return access
-                else:
-                    return '', '', 'не авторизован', 0, 0, 0
-        except:
-            return '', '', 'не авторизован', 0, 0, 0
+        with open('user_data.pkl', 'rb') as file:
+            user_data = pickle.load(file)
+            access = Oracle_SQL.get_user_data(*user_data)
+            if access:
+                access = access[0]
+                if access[5]:
+                    access[4], access[3] = 1, 1
+                return access
+            else:
+                return '', '', 'не авторизован', 0, 0, 0
     @classmethod
     def profile_log(cls):
         with open('user_data.pkl', 'wb') as file:
@@ -153,7 +151,7 @@ if __name__ == "__main__":
     MainWindow.history = DialogHistory(lambda: MainWindow.report_dialog())
     MainWindow.user_editUI = DialogUserEdit(MainWindow.user_panel_refresh)
     MainWindow.user_panel = DialogUsers(*[lambda: MainWindow.user_edit()], MainWindow.user_panel_refresh, MainWindow.delete_user)
-    MainWindow.profile = DialogProfile(lambda: Oracle_SQL.add_user(MainWindow.profile.ui.r_fio.text(), MainWindow.profile.ui.r_email.text(), MainWindow.profile.ui.r_log.text().lower(), MainWindow.profile.ui.r_pass.text()),
+    MainWindow.profile = DialogProfile(lambda: Oracle_SQL.add_user(MainWindow.profile.ui.r_fio.text(), MainWindow.profile.ui.r_email.text(), MainWindow.profile.ui.r_log.text().lower(), bcrypt.hashpw(MainWindow.profile.ui.r_pass.text().encode('utf-8'), bcrypt.gensalt())),
                                        lambda: MainWindow.profile_log())
 
     window = MainWindow()

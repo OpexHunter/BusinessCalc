@@ -1,3 +1,4 @@
+import bcrypt
 import cx_Oracle
 import datetime
 cx_Oracle.init_oracle_client(lib_dir="oracle")
@@ -72,8 +73,7 @@ def add_report(RENT_COST, REPAIR_COST, EQUIP_COST, ADVERTISING_FC, SUBSIDIZING, 
     connection.commit()
 
 def add_user(FIO , EMAIL, LOGIN, PASSWORD, CAN_SEE = 0, CAN_REPORT = 0, ADMIN = 0):
-    data=[(FIO, EMAIL, LOGIN.lower(), PASSWORD, CAN_SEE, CAN_REPORT, ADMIN)]
-
+    data=[(FIO, EMAIL, LOGIN.lower(), str(PASSWORD), CAN_SEE, CAN_REPORT, ADMIN)]
     str_dat=data[0]
     b=len(str_dat) #Авто-заполнение sql запроса
     d='('
@@ -131,15 +131,37 @@ def get_user_data(USER = '', PASSWORD = '', PASS_MODE = True):
     cursor = connection.cursor()
     bl = True if USER + PASSWORD != "" else False
     USER = "'" + USER + "'"
-    PASSWORD = "'" + PASSWORD + "'"
-    sql = (f'SELECT FIO, EMAIL, LOGIN, CAN_SEE, CAN_REPORT, ADMIN FROM USERS '
-           f'{"WHERE LOGIN = " + USER if bl else ""}{" AND PASSWORD = " + PASSWORD if bl and PASS_MODE else ""} ORDER BY 1 DESC')
+
+    sql = (f'SELECT FIO, EMAIL, LOGIN, CAN_SEE, CAN_REPORT, ADMIN, PASSWORD FROM USERS '
+           f'{"WHERE LOGIN = " + USER if bl else ""} ORDER BY 1 DESC')
     result=cursor.execute(sql)
 
     result_return = []
     for row in result:
         result_return.append([*list(row)])
-    return result_return
+    if len(result_return) == 0:
+        return [['', '', 'не авторизован', 0, 0, 0]]
+
+    try:
+        if bl and PASS_MODE:
+            hash_str = result_return[0][6]
+            if hash_str.startswith("b'") and hash_str.endswith("'"):
+                hash_bytes = bytes(hash_str[2:-1], 'utf-8').decode('unicode_escape').encode('utf-8')
+            else:
+                hash_bytes = hash_str.encode('utf-8')
+            password_bytes = PASSWORD.encode('utf-8')
+
+            if bcrypt.checkpw(password_bytes, hash_bytes):
+                result_return = [sublist[:-1] for sublist in result_return]
+                return result_return
+            else:
+                return None
+        else:
+            result_return = [sublist[:-1] for sublist in result_return]
+            return result_return
+    except ValueError:
+        print('Invalid salt')
+        return [['', '', 'не авторизован', 0, 0, 0]]
 def edit_user_data(USER, can_see, can_report, admin):
     dsn = cx_Oracle.makedsn('91.241.13.247', '1521', service_name='EDU')
     connection = cx_Oracle.connect(user='intern_team5', password='fj493#_8gfhgr',
