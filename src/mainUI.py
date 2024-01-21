@@ -126,22 +126,25 @@ class MainWindow(QMainWindow):
                                   )
     @classmethod
     def get_access_lvl(cls):
-        with open('user_data.pkl', 'rb') as file:
-            user_data = pickle.load(file)
-            access = Oracle_SQL.get_user_data(*user_data)
-            if access:
-                access = access[0]
-                if access[5]:
-                    access[4], access[3] = 1, 1
-                return access
-            else:
-                return '', '', 'не авторизован', 0, 0, 0
+        try:
+            with open('user_data.pkl', 'rb') as file:
+                user_data = pickle.load(file)
+                access = Oracle_SQL.get_user_data(*user_data)
+                if access:
+                    access = access[0]
+                    if access[5]:
+                        access[4], access[3] = 1, 1
+                    return access
+                else:
+                    return '', '', 'не авторизован', 0, 0, 0
+        except:
+            return '', '', 'не авторизован', 0, 0, 0
     @classmethod
     def profile_log(cls):
         with open('user_data.pkl', 'wb') as file:
             user_data = [*cls.profile.get_log_data()]
             pickle.dump(user_data, file)
-        cls.profile(*cls.get_access_lvl()[1:])
+        cls.profile(*cls.get_access_lvl())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
