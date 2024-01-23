@@ -1,3 +1,7 @@
+#Для работы cx_Oracle необходимо установить .dll файлы отсюда:
+https://www.oracle.com/cis/database/technologies/instant-client/winx64-64-downloads.html
+Необходимо установить Basic Package v19.21.0.0.0 и закинуть все .dll файлы из архива (из главной папки) в директорию src/oracle
+
 #При конвертации .ui файла в .py модуль необходимо заменить строку импорта файла ресурсов с
 "import src_rc" на "from . import src_rc"
 
@@ -79,4 +83,3 @@ SET CAN_SEE = 1,
     CAN_REPORT = 1,
     ADMIN = 1
 WHERE LOGIN = 'opex';
-
