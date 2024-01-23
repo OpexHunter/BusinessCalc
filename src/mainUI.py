@@ -1,4 +1,4 @@
-from src.GUI.setupUI import Ui_BuisnessCalc as Ui_MainWindow
+from src.GUI.setupUI import Ui_BusinessCalc as Ui_MainWindow
 from src.GUI.Dialog import *
 from src.oracle import Oracle_SQL
 import pickle
@@ -125,9 +125,29 @@ class MainWindow(QMainWindow):
                                   self.ui.i_TR4_1.text(),
                                   self.ui.i_TR4_2.text()
                                   )
+
+    @classmethod
+    def profile_log(cls):
+        # Получение пути к папке LocalAppData и создание подпапки для вашего приложения
+        localappdata_path = os.environ.get('LOCALAPPDATA')
+        business_calc_path = os.path.join(localappdata_path, 'BusinessCalc')
+        if not os.path.exists(business_calc_path):
+            os.makedirs(business_calc_path)
+
+        # Сохранение файла в папке вашего приложения
+        with open(os.path.join(business_calc_path, 'user_data.pkl'), 'wb') as file:
+            user_data = [*cls.profile.get_log_data()]
+            pickle.dump(user_data, file)
+        cls.profile(*cls.get_access_lvl())
+
     @classmethod
     def get_access_lvl(cls):
-        with open('user_data.pkl', 'rb') as file:
+        localappdata_path = os.environ.get('LOCALAPPDATA')
+        business_calc_path = os.path.join(localappdata_path, 'BusinessCalc')
+        if not os.path.exists(business_calc_path):
+            os.makedirs(business_calc_path)
+
+        with open(os.path.join(business_calc_path, 'user_data.pkl'), 'rb') as file:
             user_data = pickle.load(file)
             access = Oracle_SQL.get_user_data(*user_data)
             if access:
@@ -137,12 +157,6 @@ class MainWindow(QMainWindow):
                 return access
             else:
                 return '', '', 'не авторизован', 0, 0, 0
-    @classmethod
-    def profile_log(cls):
-        with open('user_data.pkl', 'wb') as file:
-            user_data = [*cls.profile.get_log_data()]
-            pickle.dump(user_data, file)
-        cls.profile(*cls.get_access_lvl())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

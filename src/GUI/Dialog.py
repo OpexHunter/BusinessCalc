@@ -133,11 +133,15 @@ class DialogReport(QDialog):
                  list_index[19] : data[27]} #Всего
         }, index = list_index)
 
-        # Если папки не существует то он её создаст
-        reports_dir = os.path.join(os.getcwd(), 'reports')
+        # Получение пути к папке LocalAppData текущего пользователя
+        localappdata_path = os.environ.get('LOCALAPPDATA')
+        # Создание пути к поддиректории 'reports' внутри LocalAppData
+        reports_dir = os.path.join(localappdata_path, 'BusinessCalc', 'reports')
+        # Проверка существования папки и создание, если необходимо
         if not os.path.exists(reports_dir):
             os.makedirs(reports_dir)
-        excel_path = f"reports/report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.xlsx"
+
+        excel_path = os.path.join(reports_dir, f"report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.xlsx")
         df.to_excel(excel_path)
 
     def save_pdf(self):
@@ -152,8 +156,20 @@ class DialogReport(QDialog):
         # Обрезаем изображение
         cropped_img = pil_im.crop((0, 0, 741, 398))
 
+        # Получение пути к папке LocalAppData текущего пользователя
+        localappdata_path = os.environ.get('LOCALAPPDATA')
+
+        # Создание пути к поддиректории 'reports' внутри LocalAppData
+        reports_dir = os.path.join(localappdata_path, 'BusinessCalc', 'reports')
+
+        # Проверка существования папки и создание, если необходимо
+        if not os.path.exists(reports_dir):
+            os.makedirs(reports_dir)
+
+        # Путь к PDF файлу в папке 'reports'
+        pdf_path = os.path.join(reports_dir, f"report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.pdf")
+
         # Создаем PDF с подходящим размером страницы и ориентацией
-        pdf_path = f"reports/report-{self.kesh_data.strftime('%d.%m.%Y')} {self.kesh_name}.pdf"
         c = canvas.Canvas(pdf_path, pagesize=landscape((741, 398)))
 
         # Получаем байтовый поток из обрезанного изображения
@@ -164,10 +180,7 @@ class DialogReport(QDialog):
         # Вставляем изображение, выравнивая его по верхнему левому углу страницы
         c.drawImage(ImageReader(img_byte_arr), 0, 0, width=741, height=398, mask='auto')
 
-        # Если папки не существует то он её создаст
-        reports_dir = os.path.join(os.getcwd(), 'reports')
-        if not os.path.exists(reports_dir):
-            os.makedirs(reports_dir)
+        # Сохраняем PDF
         c.save()
 
     def updateCanvas(self, canvas):
@@ -176,10 +189,10 @@ class DialogReport(QDialog):
         self.ui.verticalLayout_2.addWidget(canvas)
 
     def open_save_dir(self):
-        # Текущий путь
-        current_dir = os.path.dirname(os.path.abspath(__name__))
-        # Переход в папку reports
-        reports_dir_path = os.path.join(current_dir, 'reports')
+        # Получение пути к папке LocalAppData текущего пользователя
+        localappdata_path = os.environ.get('LOCALAPPDATA')
+        # Создание пути к поддиректории 'reports' внутри директории вашего приложения в LocalAppData
+        reports_dir_path = os.path.join(localappdata_path, 'BusinessCalc', 'reports')
 
         if not os.path.exists(reports_dir_path):
             os.makedirs(reports_dir_path)

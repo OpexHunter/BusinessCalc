@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BuisnessCalc</class>
- <widget class="QMainWindow" name="BuisnessCalc">
+ <class>BusinessCalc</class>
+ <widget class="QMainWindow" name="BusinessCalc">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Бизнесс калькулятор | Калькулятор рентабельности</string>
+   <string>Бизнес-калькулятор | Калькулятор рентабельности</string>
   </property>
   <property name="windowIcon">
    <iconset resource="src/assets/src.qrc">

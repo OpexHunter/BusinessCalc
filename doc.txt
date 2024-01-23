@@ -1,3 +1,6 @@
+#При конвертации .ui файла в .py модуль необходимо заменить строку импорта файла ресурсов с
+"import src_rc" на "from . import src_rc"
+
 #MainUI
 pyside6-uic setupUI.ui -o src/GUI/setupUI.py
 #Calc Helper UI
@@ -51,6 +54,14 @@ CREATE TABLE HISTORY
   PROFIT FLOAT,
   TIMEE FLOAT
 );
+
+#Создание удаление авто-заполнителя CASE_ID для таблицы HISTORY
+create sequence history_id_seq
+start with 1
+increment by 1;
+DROP SEQUENCE history_id_seq;
+
+
 #Создание таблицы USERS
 CREATE TABLE USERS (
     FIO VARCHAR2(255),
@@ -69,8 +80,3 @@ SET CAN_SEE = 1,
     ADMIN = 1
 WHERE LOGIN = 'opex';
 
-#Создание удаление авто-заполнителя CASE_ID
-create sequence history_id_seq
-start with 1
-increment by 1;
-DROP SEQUENCE history_id_seq;
