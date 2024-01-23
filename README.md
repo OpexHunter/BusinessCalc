@@ -1,1 +1,1 @@
-# Buisness-Calc
+# BusinessCalc
