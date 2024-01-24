@@ -216,16 +216,16 @@ class DialogReport(QDialog):
         self.ui.rep2.setText(f'Ежемесячные расходы (VC): {round(data[4])} р.')
         self.ui.rep3.setText(f'Выручка ресторана (TR): {round(data[5])} р.')
         self.ui.rep4.setText(f'Прибыль (PROFIT): {round(data[6])} р.')
-        self.ui.rep5.setText(f'Время окупаемости: {str(int(data[7])) + "месяцев" if data[7] > 0 else "не окупается"}')
-        if data[6] / data[4] > 0.2:
+        self.ui.rep5.setText(f'Время окупаемости: {str(int(data[7])) + " месяцев" if data[7] > 0 and data[7] < 60 else str(int(data[7]/12)) + " лет" if data[7] > 0 and data[7] < 150 else "-"}')
+        if int(data[7]) < 28 and int(data[7]) > 0:
             self.ui.rep_dop.setText(f'Условия старта хорошие, бизнес можно открывать.\n'
-                                    f'Рентабельность: {round(data[6] / data[4] * 100, 2)}%')
-        elif data[6] / data[4] > 0.1:
+                                    f'Рентабельность (по VC): {round(data[6] / data[4] * 100, 2)}%')
+        elif int(data[7]) > 0:
             self.ui.rep_dop.setText(f'Стоит посмотреть и на другие возможные места для бизнеса.\n'
-                                    f'Рентабельность: {round(data[6] / data[4]  * 100, 2)}%')
+                                    f'Рентабельность (по VC): {round(data[6] / data[4]  * 100, 2)}%')
         else:
             self.ui.rep_dop.setText(f'При данных условиях бизнес открывать не стоит.\n'
-                                    f'Рентабельность: {str(round(data[6] / data[4]  * 100, 2)) +  "%" if data[6] / data[4] > 0 else "не окупается"}')
+                                    f'Рентабельность: {str(round(data[6] / data[4]  * 100, 2)) +  "%" if data[6] / data[4] > 0 else "-"}')
 
         index = list(['FC', 'VC', 'TR', 'PROFIT'])
         values = list([data[3], data[4], data[5], data[6]])
