@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         cls.helper(text)
     @classmethod
     def __history_dialog(cls):
-        if cls.get_access_lvl()[3]:
+        if cls.__get_access_lvl()[3]:
             cls.history.show()
             cls.history.raise_()
             cls.th_history = threading.Thread(target=lambda: cls.history(Oracle_SQL.get_history_data()))
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 
     @classmethod
     def __user_panel(cls):
-        if cls.get_access_lvl()[5]:
+        if cls.__get_access_lvl()[5]:
             cls.user_panel.show()
             cls.user_panel.raise_()
             cls.user_panel(Oracle_SQL.get_user_data())
@@ -90,9 +90,9 @@ class MainWindow(QMainWindow):
     def __profile_dialog(cls):
         cls.profile.show()
         cls.profile.raise_()
-        cls.profile(*cls.get_access_lvl())
+        cls.profile(*cls.__get_access_lvl())
     def __report_create(self):
-        if self.get_access_lvl()[4]:
+        if self.__get_access_lvl()[4]:
             if self.ui.i_TR2_1.text() != '':
                 AVG_CHECK = float(self.ui.i_TR2_1.text())
             elif self.ui.i_TR2_2.currentText() != '...':
@@ -127,7 +127,7 @@ class MainWindow(QMainWindow):
                                   )
 
     @classmethod
-    def profile_log(cls):
+    def __profile_log(cls):
         # Получение пути к папке LocalAppData и создание подпапки для вашего приложения
         localappdata_path = os.environ.get('LOCALAPPDATA')
         business_calc_path = os.path.join(localappdata_path, 'BusinessCalc')
@@ -138,10 +138,10 @@ class MainWindow(QMainWindow):
         with open(os.path.join(business_calc_path, 'user_data.pkl'), 'wb') as file:
             user_data = [*cls.profile.get_log_data()]
             pickle.dump(user_data, file)
-        cls.profile(*cls.get_access_lvl())
+        cls.profile(*cls.__get_access_lvl())
 
     @classmethod
-    def get_access_lvl(cls):
+    def __get_access_lvl(cls):
         localappdata_path = os.environ.get('LOCALAPPDATA')
         business_calc_path = os.path.join(localappdata_path, 'BusinessCalc')
         if not os.path.exists(business_calc_path):
@@ -166,7 +166,7 @@ if __name__ == "__main__":
     MainWindow.user_editUI = DialogUserEdit(MainWindow.user_panel_refresh)
     MainWindow.user_panel = DialogUsers(*[lambda: MainWindow.user_edit()], MainWindow.user_panel_refresh, MainWindow.delete_user)
     MainWindow.profile = DialogProfile(lambda: Oracle_SQL.add_user(MainWindow.profile.ui.r_fio.text(), MainWindow.profile.ui.r_email.text(), MainWindow.profile.ui.r_log.text().lower(), bcrypt.hashpw(MainWindow.profile.ui.r_pass.text().encode('utf-8'), bcrypt.gensalt())),
-                                       lambda: MainWindow.profile_log())
+                                       lambda: MainWindow.__profile_log())
 
     window = MainWindow()
     window.show()
